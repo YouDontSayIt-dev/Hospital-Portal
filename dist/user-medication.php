@@ -10,19 +10,20 @@ $doctor_id = $user_data['doctorID'];
 $query = "select * from illness where userID = '$user_id'";
 $result = mysqli_query($con, $query);
 
-if (isset($_COOKIE['name'])) {
-    $value = $_COOKIE['name'];
-    // echo $value;  // Retrieve the value from the cookie
-    // Use the $value variable in your PHP code
-    $highlight_query = "select * from medication where userID = '$user_id' and medicineID = '$value'";
-    $highlight_result = mysqli_query($con, $highlight_query);
+        $docName = $_COOKIE['docName'];
+        $illnessName = $_COOKIE['illnessName'];
+        echo $docName;
+        echo $illnessName;
+        // echo $value;  // Retrieve the value from the cookie
+        // Use the $value variable in your PHP code
+        $highlight_query = "select * from medication where userID = '$user_id' and doctorID = '$docName'";
+        $highlight_result = mysqli_query($con, $highlight_query);
 
-    $doctor_query = "select * from admin where doctorID = '$value'";
-    $doctor_result = mysqli_query($con, $doctor_query);
-    
-    $medicine_query = "select * from medication where userID = '$user_id' and doctorID = '$value'";
-    $medicine_result = mysqli_query($con, $medicine_query);
-  }
+        $doctor_query = "select * from admin where doctorID = '$docName'";
+        $doctor_result = mysqli_query($con, $doctor_query);
+        
+        $medicine_query = "select * from medication where userID = '$user_id' and doctorID = '$docName' and illnessID = '$illnessName'";
+        $medicine_result = mysqli_query($con, $medicine_query);
 
 ?>
 
@@ -139,20 +140,20 @@ if (isset($_COOKIE['name'])) {
                             <!-- MEDICATION BOXES  -->
                             <!-- All medication boxes have an inactive default background color  -->
                             <!-- When clicked, the background color changes to active  -->
-                            <div id="click-medicine" name=<?php echo $row['illnessID'] ?> class="item w-[483px] h-[120px] bg-background-inactive cursor-pointer shadow-custom ml-4 rounded-3xl mb-5">
+                            <div id="click-medicine" name=<?php echo $row['doctorID'] ?> class="item w-[483px] h-[120px] bg-background-inactive cursor-pointer shadow-custom ml-4 rounded-3xl mb-5">
                                 <!-- FOR AND DATE  -->
-                                <div class="flex flex-row justify-between ml-7 mr-7 pt-4">
+                                <div name=<?php echo $row['illnessID'] ?> class="flex flex-row justify-between ml-7 mr-7 pt-4">
                                     <span class="text-side-navbar-active-text text-lg">FOR</span>
-                                    <span id="click-date" class="text-lg text-gray-text"><?php echo $row['date'] ?></span>
+                                    <span id="click-date"  class="text-lg text-gray-text"><?php echo $row['date'] ?></span>
                                 </div>
 
                                 <!-- ILLNESS  -->
-                                <div class="flex flex-row justify-between ml-7 mr-7">
+                                <div name=<?php echo $row['illnessID'] ?> class="flex flex-row justify-between ml-7 mr-7">
                                     <span id="click-illness" class="text-3xl"><?php echo $row['Illness'] ?></span>
                                 </div>
 
                                 <!-- PRESCRIBED BY  -->
-                                <div class="flex flex-row justify-between ml-7 mr-7">
+                                <div name=<?php echo $row['illnessID'] ?> class="flex flex-row justify-between ml-7 mr-7">
                                     <span id="click-notes" class="text-xl text-gray-text"><?php echo $row['notes'] ?></span>
                                 </div>
                             </div>

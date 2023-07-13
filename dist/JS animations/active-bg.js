@@ -1,6 +1,6 @@
 function toggleActiveClass() {
     var listItems = document.querySelectorAll('#medicationList .item');
-
+    
     listItems.forEach(function(item) {
       item.addEventListener('click', function() {
         // Toggle the active class for the clicked item
@@ -22,12 +22,17 @@ toggleActiveClass();
 
 function toggleActiveClassTime() {
   var listItemsTime = document.querySelectorAll('#timeSlotList .time');
+  var timeSelect = document.getElementById('time-select');
 
   listItemsTime.forEach(function(time) {
     time.addEventListener('click', function() {
       // Toggle the active class for the clicked item
       time.classList.remove('bg-form-fill');
       time.classList.add('bg-time-active');
+      timeValue = time.getAttribute('value');
+      timeSelect.setAttribute('value', timeValue);
+      console.log(timeValue);
+      console.log(timeSelect);
 
       // Remove active class from all list items except the clicked item
       listItemsTime.forEach(function(li) {

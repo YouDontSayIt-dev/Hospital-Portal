@@ -1,13 +1,26 @@
-function getName() {
+function getDoctor() {
     var listItems = document.querySelectorAll('#medicationList div');
     listItems.forEach(function(div) {
       div.addEventListener('click', function() {
         divName = div.getAttribute('name');
         var value = divName;  // JavaScript variable value
-        document.cookie = "name=" + encodeURIComponent(value);  // Set the cookie 
+        document.cookie = "docName=" + encodeURIComponent(value);  // Set the cookie 
         location.reload();
     });
   
   });
   }
-  getName(); 
+  getDoctor();
+  
+  function getIllness() {
+    var listItems = document.querySelectorAll('#medicationList div div ');
+    listItems.forEach(function(div) {
+      div.addEventListener('click', function() {
+        divName = div.getAttribute('name');
+        var value = divName;  // JavaScript variable value
+        document.cookie = "illnessName=" + encodeURIComponent(value);
+    });
+  
+  });
+  }
+  getIllness(); 

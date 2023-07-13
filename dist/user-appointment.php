@@ -10,7 +10,25 @@ $query = "select * from appointment where userID = '$user_id'";
 $result = mysqli_query($con, $query);
 
 
+if(isset($_COOKIE['doctorSelect'])) {
+    $timeValue = $_COOKIE['timeSelect'];
+    $dateValue = $_COOKIE['bookingDate'];
+    $doctorValue = $_COOKIE['doctorSelect'];
+    $specialtyValue = $_COOKIE['specialtySelect'];
 
+
+
+    $docID_query = "select * from admin where name = '$doctorValue'";
+    $docID_result = mysqli_query($con, $docID_query);
+
+    while ($row = mysqli_fetch_array($docID_result)) {
+        $docID = $row['doctorID'];
+    }
+    echo $docID;
+}
+    $insert_query = "insert into appointment (userID, doctorID, date, time, doctorName, specialty) values ('$user_id', '$docID', '$dateValue', '$timeValue','$doctorValue', '$specialtyValue')";
+    $check = mysqli_query($con, $insert_query);
+     
 ?>
 
 
@@ -27,6 +45,7 @@ $result = mysqli_query($con, $query);
     <link rel="icon" href="../assets/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 </head>
 <body class="bg-custom-color p-0 m-0 font-Commissioner flex-nowrap">
     <div class="flex">
@@ -171,7 +190,8 @@ $result = mysqli_query($con, $query);
                             ?>
                             <div class="relative ml-10 z-50">
                                 <button id="specialtyMenu" class="w-[400px] h-10 rounded-full">
-                                    <input class="w-full h-full bg-form-fill rounded-full indent-6" type="text" id="specialtyBox" placeholder="Select">
+                                    <input class="w-full h-full bg-form-fill rounded-full indent-6" name="specialty-select" type="text" id="specialtyBox" placeholder="Select">
+                                    <select class="hidden" name="fetchDoc" id="fetchDoc"></select>
                                 </button>
                                 <div id="specialtyDropdown" class="hidden absolute mt-2 w-[400px] bg-white border border-gray-300 rounded-xl shadow-xl">
                                     <?php while($specialty_row = mysqli_fetch_assoc($specialty_result)){?>
@@ -186,12 +206,10 @@ $result = mysqli_query($con, $query);
                             $doctor_result = mysqli_query($con, $doctor_query);?>
                             <div class="relative ml-10 z-30">
                                 <button id="doctorMenu" class="w-[400px] h-10 rounded-full">
-                                    <input class="w-full h-full bg-form-fill rounded-full indent-6" type="text" id="doctorBox" placeholder="Select">
+                                    <input class="w-full h-full bg-form-fill rounded-full indent-6" name="doctor-select" type="text" id="doctorBox" placeholder="Select">
                                 </button>
                                 <div id="doctorDropdown" class="hidden absolute mt-2 w-[400px] bg-white border border-gray-300 rounded-xl shadow-xl">
-                                    <?php while($doctor_row = mysqli_fetch_assoc($doctor_result)){?>        
-                                        <a class="block px-4 py-2 hover:bg-blue-500 hover:text-white cursor-pointer" onclick="updateDoctorText('<?php echo $doctor_row['name']?>')"><?php echo $doctor_row['name'] ?></a>
-                                     <?php ;} ?>
+                                    
                                 </div>
                             </div>      
                         </div>
@@ -200,7 +218,7 @@ $result = mysqli_query($con, $query);
                         <div class="w-[50%] h-full">
                             <h1 class="mt-11 mb-3 text-side-navbar-active-text text-2xl">Date</h1>
                             <!-- CALENDAR -->
-                            <input type="text" id="booking-date" placeholder="Select a date" class="px-6 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <input type="text" name="booking-date" id="booking-date" placeholder="Select a date" class="px-6 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                         </div>
                     </div>
 
@@ -212,96 +230,20 @@ $result = mysqli_query($con, $query);
                             <!-- DIVISION FOR THE LIST OF THE TIME BTNS -->
                             <div class="w-full h-fit">
                                 <!-- TIME BOXES LIST -->
-                                <ul id="timeSlotList" class="w-full h-full flex flex-row flex-wrap space-y-5">
-                                    <li>
-                                        <!-- TIME SLOT BTNS -->
-                                        <!-- All timeslot boxes have an inactive default background color  -->
-                                        <!-- When clicked, the background color changes to active  -->
-                                        <button class="time flex w-[150px] h-[45px] ml-5 mt-5 justify-center items-center rounded-3xl bg-form-fill">
-                                            <span class=" text-custom-time text-lg">8:00 am</span>
-                                        </button>
-                                    </li>
-
-                                    <li>
-                                       <!-- TIME SLOT BTNS -->
-                                        <!-- All timeslot boxes have an inactive default background color  -->
-                                        <!-- When clicked, the background color changes to active  -->
-                                        <button class="time flex w-[150px] h-[45px] ml-5 justify-center items-center rounded-3xl bg-form-fill">
-                                            <span class=" text-custom-time text-lg">9:00 am</span>
-                                        </button>
-                                    </li>
-
-                                    <li>
-                                       <!-- TIME SLOT BTNS -->
-                                        <!-- All timeslot boxes have an inactive default background color  -->
-                                        <!-- When clicked, the background color changes to active  -->
-                                        <button class="time flex w-[150px] h-[45px] ml-5 justify-center items-center rounded-3xl bg-form-fill">
-                                            <span class=" text-custom-time text-lg">10:00 am</span>
-                                        </button>
-                                    </li>
-
-                                    <li>
-                                       <!-- TIME SLOT BTNS -->
-                                        <!-- All timeslot boxes have an inactive default background color  -->
-                                        <!-- When clicked, the background color changes to active  -->
-                                        <button class="time flex w-[150px] h-[45px] ml-5 justify-center items-center rounded-3xl bg-form-fill">
-                                            <span class=" text-custom-time text-lg">11:00 am</span>
-                                        </button>
-                                    </li>
-
-                                    <li>
-                                       <!-- TIME SLOT BTNS -->
-                                        <!-- All timeslot boxes have an inactive default background color  -->
-                                        <!-- When clicked, the background color changes to active  -->
-                                        <button class="time flex w-[150px] h-[45px] ml-5 justify-center items-center rounded-3xl bg-form-fill">
-                                            <span class=" text-custom-time text-lg">2:00 pm</span>
-                                        </button>
-                                    </li>
-
-                                    <li>
-                                       <!-- TIME SLOT BTNS -->
-                                        <!-- All timeslot boxes have an inactive default background color  -->
-                                        <!-- When clicked, the background color changes to active  -->
-                                        <button class="time flex w-[150px] h-[45px] ml-5 justify-center items-center rounded-3xl bg-form-fill">
-                                            <span class=" text-custom-time text-lg">3:00 pm</span>
-                                        </button>
-                                    </li>
-
-                                    <li>
-                                       <!-- TIME SLOT BTNS -->
-                                        <!-- All timeslot boxes have an inactive default background color  -->
-                                        <!-- When clicked, the background color changes to active  -->
-                                        <button class="time flex w-[150px] h-[45px] ml-5 justify-center items-center rounded-3xl bg-form-fill">
-                                            <span class=" text-custom-time text-lg">4:00 pm</span>
-                                        </button>
-                                    </li>
-
-                                    <li>
-                                       <!-- TIME SLOT BTNS -->
-                                        <!-- All timeslot boxes have an inactive default background color  -->
-                                        <!-- When clicked, the background color changes to active  -->
-                                        <button class="time flex w-[150px] h-[45px] ml-5 justify-center items-center rounded-3xl bg-form-fill">
-                                            <span class=" text-custom-time text-lg">5:00 pm</span>
-                                        </button>
-                                    </li>
-
-                                    <li>
-                                       <!-- TIME SLOT BTNS -->
-                                        <!-- All timeslot boxes have an inactive default background color  -->
-                                        <!-- When clicked, the background color changes to active  -->
-                                        <button class="time flex w-[150px] h-[45px] ml-5 justify-center items-center rounded-3xl bg-form-fill">
-                                            <span class=" text-custom-time text-lg">6:00 pm</span>
-                                        </button>
-                                    </li>
-
-                                    <li>
-                                       <!-- TIME SLOT BTNS -->
-                                        <!-- All timeslot boxes have an inactive default background color  -->
-                                        <!-- When clicked, the background color changes to active  -->
-                                        <button class="time flex w-[150px] h-[45px] ml-5 justify-center items-center rounded-3xl bg-form-fill">
-                                            <span class=" text-custom-time text-lg">7:00 pm</span>
-                                        </button>
-                                    </li>
+                                <?php $time_query = "select time from time"; 
+                                $time_result = mysqli_query($con,$time_query)?>
+                                <input type="text" name="time-select" id="time-select" class="hidden"> 
+                                <ul id="timeSlotList" class="w-full h-full flex flex-row flex-wrap space-y-5 justify-normal items-center">
+                                    <?php while($time_row = mysqli_fetch_assoc($time_result)){?>
+                                        <li>
+                                            <!-- TIME SLOT BTNS -->
+                                            <!-- All timeslot boxes have an inactive default background color  -->
+                                            <!-- When clicked, the background color changes to active  -->
+                                            <button value="<?php echo $time_row['time'] ?>" class="time flex w-[150px] h-[45px] ml-5 mt-5 justify-center items-center rounded-3xl bg-form-fill mb-2 text-custom-time text-lg">
+                                               <?php echo $time_row['time'] ?>
+                                            </button>
+                                        </li>
+                                    <?php ;} ?>
                                 </ul> 
                             </div>
                         </div>
@@ -317,10 +259,11 @@ $result = mysqli_query($con, $query);
                             
                             <!-- SAVE BTN  -->
                             <a href="#">
-                                <button class="flex w-[150px] h-[45px] bg-save-button ml-[30px] mr-5 justify-center items-center rounded-3xl shadow-custom hover:scale-105 transform transition-transform duration-300">
+                                <button onclick="dataPost()" class="flex w-[150px] h-[45px] bg-save-button ml-[30px] mr-5 justify-center items-center rounded-3xl shadow-custom hover:scale-105 transform transition-transform duration-300">
                                     <span class=" text-gray-text text-lg" type="submit">Save</span>
                                 </button>
                             </a>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -332,13 +275,15 @@ $result = mysqli_query($con, $query);
     <script src="../dist/JS animations/active-bg.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="../dist/JS animations/appointment-dropdown.js"></script>
+    <script src="../dist/JS animations/appointment-post.js"></script>
+    
     <script>
         flatpickr("#booking-date", {
             // Specify available dates (optional)
             minDate: "today",
 
             altInput: true,
-            altFormat: "F j, Y",
+            altFormat: "Y-m-j",
             dateFormat: "Y-m-d",
 
             inline: true,
@@ -346,6 +291,28 @@ $result = mysqli_query($con, $query);
             // Additional appearance options (optional)
             mode: "single",
             allowInput: true,
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#specialtyBox").on('click',function(){
+                var value = $(this).val();
+                 console.log(value);
+
+                $.ajax({url:"../dist/backend files/fetch.php",
+                    type:"POST",
+                    data:"request=" + value,
+                    dataType: "html",
+                    beforeSend:function(){
+                        $("#doctorDropdown").html("<option>Working...</option>");
+                    },
+                    success:function(data){
+                        // console.log(data);
+                        // console.log("value:" + value);
+                        $("#doctorDropdown").html(data);
+                    }
+                });
+            });
         });
     </script>
 </body>

@@ -132,7 +132,7 @@ $user_data = check_login($con); //collect user data and check connection
                 <!-- UPPER BOXES  -->
                 <div class="flex flex-col lg:flex-row">
                     <!-- PROFILE SECTION -->
-                    <a href="/dist/user-profile.html">
+                    <a href="./dist/user-profile.php">
                         <div class="w-full h-[179px] lg:w-[483px] lg:h-[274px] mt-[20px] rounded-3xl shadow-custom lg:mr-7 hover:scale-105 transform transition-transform duration-300">
                             
                             <!-- USER NAME AND ICON  -->
