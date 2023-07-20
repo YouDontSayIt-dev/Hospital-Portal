@@ -1,3 +1,25 @@
+<?php 
+session_start();
+
+include("../dist/backend files/connection.php");
+include("../dist/backend files/functions.php");
+
+if(isset($_POST['submit'])){
+    if(isset($_POST['old-password']) && isset($_POST['new-password']) && isset($_POST['confirm-new-password'])){
+        $op = $_POST['old-password'];
+	    $np = $_POST['new-password'];
+	    $c_np = $_POST['confirm-new-password'];
+
+        if(empty($op)){
+            echo "Wrong username or password!";
+    }
+    }
+
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -97,13 +119,23 @@
 
             <!-- MAIN CONTENT -->
             <div class="flex flex-col">
-                <!-- TOP CONTENT  -->
+                <!-- TOP CONTENT  /-->
                 <div class="mt-4">
                     <h1 class="text-3xl text-sidebar-text-bold">Change Password</h1>
                 </div>
 
                 <!-- CHANGE PASSWORD BOX  -->
                 <div class="flex flex-col w-[1636px] h-[310px] mt-[45px] bg-white rounded-[30px] shadow-custom">
+
+                <form method="post">
+                <?php if (isset($_GET['error'])) { ?>
+     		        <p class="error"><?php echo $_GET['error']; ?></p>
+     	        <?php } ?>
+
+     	        <?php if (isset($_GET['success'])) { ?>
+                    <p class="success"><?php echo $_GET['success']; ?></p>
+                <?php } ?>
+                
                     <!-- OLD PASSWORD -->
                     <div class="flex flex-row justify-center items-center w-fit h-fit ml-10 mt-9">
                         <span class="text-lg text-side-navbar-active-text">Old Password</span>
@@ -111,7 +143,7 @@
                         <!-- OLD PASSWORD INPUT -->
                         <input
                             class="w-[774px] h-[42px] ml-[88px] pl-10 pr-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
-                            type="edit"
+                            type="password"
                             name="old-password"
                             placeholder=""
                         >
@@ -124,7 +156,7 @@
                         <!-- NEW PASSWORD INPUT -->
                         <input
                             class="w-[774px] h-[42px] ml-[80px] pl-10 pr-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
-                            type="edit"
+                            type="password"
                             name="new-password"
                             placeholder=""
                         >
@@ -137,8 +169,8 @@
                         <!-- CONFIRM PASSWORD INPUT -->
                         <input
                             class="w-[774px] h-[42px] ml-[50px] pl-10 pr-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
-                            type="edit"
-                            name="new-password"
+                            type="password"
+                            name="confirm-new-password"
                             placeholder=""
                         >
                     </div>
@@ -154,15 +186,17 @@
                         
                         <!-- SAVE BTN  -->
                         <a href="#">
-                            <button class="flex w-[90px] h-[45px] bg-save-button mt-3 ml-[30px] justify-center items-center rounded-3xl shadow-custom hover:scale-105 transform transition-transform duration-300">
-                                <span class=" text-gray-text text-lg">Save</span>
+                            <button name="submit" type="submit" class="flex w-[90px] h-[45px] bg-save-button mt-3 ml-[30px] justify-center items-center rounded-3xl shadow-custom hover:scale-105 transform transition-transform duration-300">
+                                <span name="submit" type="submit" class=" text-gray-text text-lg">Save</span>
                             </button>
                         </a>
                     </div>
+
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-    <script src="/dist/JS animations/profile-dropdown.js"></script>
+    <script src="../dist/JS animations/profile-dropdown.js"></script>
 </body>
 </html>
