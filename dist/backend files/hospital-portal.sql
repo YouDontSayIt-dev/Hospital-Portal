@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 20, 2023 at 10:04 PM
+-- Generation Time: Jul 20, 2023 at 08:31 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -62,19 +62,8 @@ CREATE TABLE `appointment` (
   `date` date NOT NULL,
   `time` varchar(255) NOT NULL,
   `doctorName` varchar(255) NOT NULL,
-  `specialty` varchar(255) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `useremail` varchar(255) NOT NULL,
-  `contactnumber` varchar(255) NOT NULL
+  `specialty` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `appointment`
---
-
-INSERT INTO `appointment` (`appointmentID`, `userID`, `doctorID`, `date`, `time`, `doctorName`, `specialty`, `username`, `useremail`, `contactnumber`) VALUES
-(1, 1, 1, '2023-07-25', '9:00 am', 'Dr Cha', 'Internal Medicine', 'Mathew James Muyco', 'mjmuyco13@gmail.com', '2147483647'),
-(2, 1, 2, '2023-07-21', '10:00 am', 'Dr. Atlas', 'Obstetrician-Gynecologist', 'Mathew James Muyco', 'mjmuyco13@gmail.com', '2147483647');
 
 -- --------------------------------------------------------
 
@@ -97,7 +86,7 @@ CREATE TABLE `finance` (
 --
 
 INSERT INTO `finance` (`financeID`, `userID`, `agenda`, `doctor`, `amount`, `date`, `status`) VALUES
-(1, 2, 'Check up', 'Dr. Cha', 500, '2023-07-18', 'Paid'),
+(1, 3, 'Check up', 'Dr. Cha', 500, '2023-07-18', 'Paid'),
 (3, 1, 'test', 'test', 1000, '2023-07-05', 'paid'),
 (4, 1, 'Pills', 'Dr. Cha', 1000, '2023-07-06', 'Paid');
 
@@ -121,35 +110,11 @@ CREATE TABLE `illness` (
 -- Dumping data for table `illness`
 --
 
-INSERT INTO `illness` (`illnessID`, `Illness`, `date`, `notes`, `userID`, `doctorID`, `status`) VALUES
-(1, 'Diabetes', '2023-07-20', 'Prescribed by Dr. Cha', 1, 1, 'Ongoing Treatment'),
-(2, 'PCOS', '2023-07-15', 'Prescribed by Dr.Atlas', 1, 2, 'Ongoing Treatment'),
-(4, 'Diabetes', '2023-07-20', 'Prescribed by Dr. Cha', 2, 1, 'Ongoing Treatment'),
-(5, 'PCOS', '2023-07-15', 'Prescribed by Dr.Atlas', 2, 2, 'Ongoing Treatment');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `lab_results`
---
-
-CREATE TABLE `lab_results` (
-  `labresultID` int(11) NOT NULL,
-  `doctorID` int(11) NOT NULL,
-  `userID` int(11) NOT NULL,
-  `date` date NOT NULL,
-  `lab_test` varchar(255) NOT NULL,
-  `lab_result` varchar(255) NOT NULL,
-  `normal_range` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `lab_results`
---
-
-INSERT INTO `lab_results` (`labresultID`, `doctorID`, `userID`, `date`, `lab_test`, `lab_result`, `normal_range`) VALUES
-(1, 1, 1, '2023-07-28', 'FBS(Glucose)', '7.78 mmol/L', '30.9 - 6.4 mmol/L'),
-(2, 2, 2, '2023-07-21', 'FBS(Glucose)', '7.78 mmol/L', '30.9 - 6.4 mmol/L');
+INSERT INTO `illness` (`illnessID`, `Illness`, `date`, `notes`, `userID`, `doctorID`) VALUES
+(1, 'Diabetes', '2023-07-20', 'Prescribed by Dr. Cha', 1, 1),
+(2, 'PCOS', '2023-07-15', 'Prescribed by Dr.Atlas', 1, 2),
+(4, 'Diabetes', '2023-07-20', 'Prescribed by Dr. Cha', 2, 1),
+(5, 'PCOS', '2023-07-15', 'Prescribed by Dr.Atlas', 2, 2);
 
 -- --------------------------------------------------------
 
@@ -187,29 +152,6 @@ INSERT INTO `medication` (`medicineID`, `illnessID`, `userID`, `doctorID`, `medi
 -- --------------------------------------------------------
 
 --
--- Table structure for table `notes`
---
-
-CREATE TABLE `notes` (
-  `noteID` int(11) NOT NULL,
-  `userID` int(11) NOT NULL,
-  `doctorID` int(11) NOT NULL,
-  `notes` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `notes`
---
-
-INSERT INTO `notes` (`noteID`, `userID`, `doctorID`, `notes`) VALUES
-(1, 1, 1, 'Due to your medication, you might get dehydrated so drink lots of water.'),
-(2, 1, 1, 'Don’t skip meals.'),
-(3, 2, 2, 'Due to your medication, you might get dehydrated so drink lots of water.'),
-(4, 2, 1, 'Don’t skip meals.');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `patient details`
 --
 
@@ -220,30 +162,11 @@ CREATE TABLE `patient details` (
   `Blood` varchar(10) NOT NULL,
   `Height` int(11) NOT NULL,
   `Weight` int(11) NOT NULL,
-  `Temperature` decimal(11,0) NOT NULL,
+  `Temperature` int(11) NOT NULL,
   `Oxygen Level` int(11) NOT NULL,
   `Pulse Rate` int(11) NOT NULL,
-  `Blood Pressure` varchar(255) NOT NULL
+  `Blood Pressure` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `root`
---
-
-CREATE TABLE `root` (
-  `rootID` int(11) NOT NULL,
-  `adminID` int(11) NOT NULL,
-  `password` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `root`
---
-
-INSERT INTO `root` (`rootID`, `adminID`, `password`) VALUES
-(1, 1111, 1111);
 
 -- --------------------------------------------------------
 
@@ -284,7 +207,7 @@ CREATE TABLE `time` (
 
 INSERT INTO `time` (`timeID`, `time`, `status`, `doctorID`) VALUES
 (1, '8:00 am', 'enabled', 1),
-(2, '9:00 am', 'disabled', 1),
+(2, '9:00 am', 'enabled', 1),
 (3, '10:00 am', 'enabled', 1),
 (4, '11:00 am', 'enabled', 1),
 (5, '2:00 pm', 'enabled', 1),
@@ -295,7 +218,7 @@ INSERT INTO `time` (`timeID`, `time`, `status`, `doctorID`) VALUES
 (10, '7:00 pm', 'enabled', 1),
 (11, '8:00 am', 'enabled', 2),
 (12, '9:00 am', 'enabled', 2),
-(13, '10:00 am', 'disabled', 2),
+(13, '10:00 am', 'enabled', 2),
 (14, '11:00 am', 'enabled', 2),
 (15, '2:00 pm', 'enabled', 2),
 (16, '3:00 pm', 'enabled', 2),
@@ -330,8 +253,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`userID`, `doctorID`, `first_name`, `last_name`, `email`, `gender`, `birth_date`, `contact_number`, `password`, `address`, `family`, `family_number`) VALUES
-(1, 1, 'Mathew James', 'Muyco', 'mjmuyco13@gmail.com', 'Male', '2023-07-11', 2147483647, 'finn', 'Blk 11 Lot 5 Phase O (old) Brgy Narra Francisco Homes San Jose Del Monte Bulacan', 'Mathew James Palma Muyco', 2147483647),
-(2, 1, 'Finn', 'Steiner', 'mathewjamespmuyco@iskolarngbayan.pup.edu.ph', 'Male', '2023-07-06', 11111, 'finn', '', '', 0);
+(1, 1, 'Mathew James', 'Muyco', 'mjmuyco13@gmail.com', 'Male', '2023-07-11', 2147483647, 'finn', '', '', 0),
+(3, 1, 'Finn', 'Steiner', 'mathewjamespmuyco@iskolarngbayan.pup.edu.ph', 'Male', '2023-07-06', 11111, 'finn', '', '', 0);
 
 --
 -- Indexes for dumped tables
@@ -364,7 +287,7 @@ ALTER TABLE `finance`
 ALTER TABLE `illness`
   ADD PRIMARY KEY (`illnessID`),
   ADD KEY `medicine_ibfk_1` (`userID`),
-  ADD KEY `illness_ibfk_2` (`doctorID`);
+  ADD KEY `doctorID` (`doctorID`);
 
 --
 -- Indexes for table `lab_results`
@@ -397,12 +320,6 @@ ALTER TABLE `notes`
 ALTER TABLE `patient details`
   ADD PRIMARY KEY (`patientID`),
   ADD KEY `patient details_ibfk_1` (`userID`);
-
---
--- Indexes for table `root`
---
-ALTER TABLE `root`
-  ADD PRIMARY KEY (`rootID`);
 
 --
 -- Indexes for table `schedule`
@@ -451,7 +368,13 @@ ALTER TABLE `finance`
 -- AUTO_INCREMENT for table `illness`
 --
 ALTER TABLE `illness`
-  MODIFY `illnessID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `illnessID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `lab_results`
+--
+ALTER TABLE `lab_results`
+  MODIFY `labresultID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `lab_results`
@@ -463,7 +386,7 @@ ALTER TABLE `lab_results`
 -- AUTO_INCREMENT for table `medication`
 --
 ALTER TABLE `medication`
-  MODIFY `medicineID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `medicineID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `notes`
@@ -476,12 +399,6 @@ ALTER TABLE `notes`
 --
 ALTER TABLE `patient details`
   MODIFY `patientID` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `root`
---
-ALTER TABLE `root`
-  MODIFY `rootID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `schedule`
@@ -499,7 +416,7 @@ ALTER TABLE `time`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
@@ -509,21 +426,21 @@ ALTER TABLE `user`
 -- Constraints for table `appointment`
 --
 ALTER TABLE `appointment`
-  ADD CONSTRAINT `appointment_ibfk_2` FOREIGN KEY (`userID`) REFERENCES `user` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `appointment_ibfk_2` FOREIGN KEY (`userID`) REFERENCES `user` (`UserID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `appointment_ibfk_3` FOREIGN KEY (`doctorID`) REFERENCES `admin` (`doctorID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `finance`
 --
 ALTER TABLE `finance`
-  ADD CONSTRAINT `finance_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `user` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `finance_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `user` (`UserID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `illness`
 --
 ALTER TABLE `illness`
-  ADD CONSTRAINT `illness_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `user` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `illness_ibfk_2` FOREIGN KEY (`doctorID`) REFERENCES `admin` (`doctorID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `illness_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `user` (`UserID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `illness_ibfk_2` FOREIGN KEY (`doctorID`) REFERENCES `admin` (`doctorID`);
 
 --
 -- Constraints for table `lab_results`
@@ -551,19 +468,7 @@ ALTER TABLE `notes`
 -- Constraints for table `patient details`
 --
 ALTER TABLE `patient details`
-  ADD CONSTRAINT `patient details_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `user` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `schedule`
---
-ALTER TABLE `schedule`
-  ADD CONSTRAINT `schedule_ibfk_1` FOREIGN KEY (`doctorID`) REFERENCES `admin` (`doctorID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `time`
---
-ALTER TABLE `time`
-  ADD CONSTRAINT `time_ibfk_1` FOREIGN KEY (`doctorID`) REFERENCES `admin` (`doctorID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `patient details_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `user` (`UserID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `user`
