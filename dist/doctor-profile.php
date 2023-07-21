@@ -25,13 +25,11 @@ session_start();
         <!-- SIDEBAR NAV -->
         <div class="sticky hidden lg:block lg:w-[172px] lg:h-screen bg-side-navbar rounded-tr-3xl rounded-br-3xl">
             <!-- logo -->
-            <a href="doctor-patient-file.php">
             <img src="../assets/logo.png" alt="logo" class="mx-auto pt-[34px]">
-            </a>
 
             <!-- nav -->
             <!-- HEALTH BOARD  -->
-            <a href="admin-patient-file.php">
+            <a href="doctor-patient-file.php">
                 <div
                     class="flex flex-col lg:w-[125px] lg:h-[144px] rounded-3xl mx-auto mt-[61px] justify-center items-center space-y-3 hover:scale-105 transform transition-transform duration-300">
                     <img src="../assets/sidebar/patient.png" alt="health-board-active">
@@ -40,7 +38,7 @@ session_start();
             </a>
 
             <!-- APPOINTMENT  -->
-            <a href="admin-appointment.php">
+            <a href="doctor-appointment.php">
                 <div
                     class="flex flex-col lg:w-[125px] lg:h-[144px] rounded-3xl mx-auto justify-center items-center space-y-3 hover:scale-105 transform transition-transform duration-300">
                     <img src="../assets/sidebar/appointment.png" alt="appointment">
@@ -49,7 +47,7 @@ session_start();
             </a>
 
             <!-- MESSAGE  -->
-            <a href="admin-message.php">
+            <a href="">
                 <div
                     class="flex flex-col lg:w-[125px] lg:h-[144px] rounded-3xl mx-auto justify-center items-center space-y-3 hover:scale-105 transform transition-transform duration-300">
                     <img src="../assets/sidebar/message.png" alt="message">
@@ -72,11 +70,11 @@ session_start();
                     <ul id="dropdown-menu" class="absolute hidden w-40 right-3 mt-1">
                         <li><a class="bg-white hover:bg-side-navbar py-2 px-4 block whitespace-no-wrap rounded-t-md"
                                 href="#">Profile</a></li>
-                        <li><a class="bg-white hover:bg-side-navbar py-2 px-4 block whitespace-no-wrap" href="#">Change
+                        <li><a class="bg-white hover:bg-side-navbar py-2 px-4 block whitespace-no-wrap" href="doctor-change-pass.php">Change
                                 Password</a></li>
                         <hr>
                         <li><a class="bg-white hover:bg-side-navbar py-2 px-4 block whitespace-no-wrap rounded-b-md"
-                                href="#">Log out</a></li>
+                                href="splash.php">Log out</a></li>
                     </ul>
                 </div>
 
@@ -114,9 +112,9 @@ session_start();
                     Below the left and right items are the bottom items (honest clause and edit button). -->
                     
                     <?php 
-                        // $uid = $_SESSION['user'];
+                        $uid = $_SESSION['doctorID'];
 
-                        $query = "SELECT * FROM `admin` WHERE doctorID='2';"; // change to the value of $_SESSION['userID']; 
+                        $query = "SELECT * FROM `admin` WHERE doctorID=$uid;"; // change to the value of $_SESSION['userID']; 
                         $result = mysqli_query($con, $query);
 
                         while($row = mysqli_fetch_assoc($result)){ ?>
@@ -143,10 +141,10 @@ session_start();
                                         if($len == 1){
                                             echo "00-000-00".$row['doctorID'];
                                         }
-                                        else if($len == 2){
+                                        else if(len == 2){
                                             echo "00-000-0".$row['doctorID'];
                                         }
-                                        else if($len == 3){
+                                        else if(len == 3){
                                             echo "00-000-".$row['doctorID'];
                                         }
                                     ?>
@@ -227,7 +225,7 @@ session_start();
                         <span class="mt-7 ml-2 italic">I hereby certify that all the information provided are true and
                             correct to the best of my knowledge.</span>
 
-                        <a href="admin-profile-edit.php">
+                        <a href="doctor-profile-edit.php">
                             <button
                                 class="flex w-[90px] h-[45px] mt-3 ml-[750px] justify-center items-center rounded-3xl shadow-custom hover:scale-105 transform transition-transform duration-300">
                                 <img src="../assets/edit-btn.png" alt="user-profile-edit">
