@@ -79,10 +79,10 @@ session_start();
                     </button> 
                     <!--profile dropdown-->                
                     <ul id="dropdown-menu" class="absolute hidden w-40 right-3 mt-1"> 
-                        <li><a class="bg-white hover:bg-side-navbar py-2 px-4 block whitespace-no-wrap rounded-t-md" href="#">Profile</a></li> 
-                        <li><a class="bg-white hover:bg-side-navbar py-2 px-4 block whitespace-no-wrap" href="#">Change Password</a></li> 
+                        <li><a class="bg-white hover:bg-side-navbar py-2 px-4 block whitespace-no-wrap rounded-t-md" href="user-profile.php">Profile</a></li> 
+                        <li><a class="bg-white hover:bg-side-navbar py-2 px-4 block whitespace-no-wrap" href="user-change-pass.php">Change Password</a></li> 
                         <hr>
-                        <li><a class="bg-white hover:bg-side-navbar py-2 px-4 block whitespace-no-wrap rounded-b-md" href="#">Log out</a></li> 
+                        <li><a class="bg-white hover:bg-side-navbar py-2 px-4 block whitespace-no-wrap rounded-b-md" href="splash.php">Log out</a></li> 
                     </ul>
                 </div>
 
@@ -107,7 +107,7 @@ session_start();
                     <h1 class="text-3xl text-sidebar-text-bold">Personal Data</h1>
                 </div>
 
-                <form action="./backend files/user-update.php?" method="post">
+                <form action="./backend files/user-profile-update.php?" method="post">
                     <!-- PROFILE BOX  -->
                     <div class="flex flex-col w-[1636px] h-[530px] mt-[45px] bg-white rounded-[30px] shadow-custom">
 
@@ -269,10 +269,8 @@ session_start();
                             <span class="mt-7 ml-2 italic">I hereby certify that all the information provided are true and correct to the best of my knowledge.</span>
                             
                             <!-- CANCEL BTN  -->
-                            <a href="#">
-                                <button class="flex w-[90px] h-[45px] mt-3 ml-[600px] justify-center items-center rounded-3xl shadow-custom hover:scale-105 transform transition-transform duration-300">
-                                    <span class=" text-gray-text text-lg">Cancel</span>
-                                </button>
+                            <a href="user-profile.php" class="flex w-[90px] h-[45px] mt-3 ml-[600px] justify-center items-center rounded-3xl shadow-custom hover:scale-105 transform transition-transform duration-300">
+                                <span class=" text-gray-text text-lg">Cancel</span>
                             </a>
                             
                             <!-- SAVE BTN  -->
@@ -284,6 +282,6 @@ session_start();
         </div>
     </div> 
     
-    <script src="/dist/JS animations/profile-dropdown.js"></script>
+    <script src="./JS animations/profile-dropdown.js"></script>
 </body>
 </html>

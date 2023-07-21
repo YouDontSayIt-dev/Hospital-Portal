@@ -29,7 +29,7 @@ session_start();
 
             <!-- nav -->
             <!-- HEALTH BOARD  -->
-            <a href="admin-patient-file.php">
+            <a href="doctor-patient-file.php">
                 <div
                     class="flex flex-col lg:w-[125px] lg:h-[144px] rounded-3xl mx-auto mt-[61px] justify-center items-center space-y-3 hover:scale-105 transform transition-transform duration-300">
                     <img src="../assets/sidebar/patient.png" alt="health-board-active">
@@ -38,7 +38,7 @@ session_start();
             </a>
 
             <!-- APPOINTMENT  -->
-            <a href="admin-appointment.php">
+            <a href="">
                 <div
                     class="flex flex-col lg:w-[125px] lg:h-[144px] rounded-3xl mx-auto justify-center items-center space-y-3 hover:scale-105 transform transition-transform duration-300">
                     <img src="../assets/sidebar/appointment.png" alt="appointment">
@@ -47,7 +47,7 @@ session_start();
             </a>
 
             <!-- MESSAGE  -->
-            <a href="admin-message.php">
+            <a href="">
                 <div
                     class="flex flex-col lg:w-[125px] lg:h-[144px] rounded-3xl mx-auto justify-center items-center space-y-3 hover:scale-105 transform transition-transform duration-300">
                     <img src="../assets/sidebar/message.png" alt="message">
@@ -68,8 +68,8 @@ session_start();
                     <!--profile dropdown-->
                     <ul id="dropdown-menu" class="absolute hidden w-40 right-3 mt-1">
                         <li><a class="bg-white hover:bg-side-navbar py-2 px-4 block whitespace-no-wrap rounded-t-md"
-                                href="admin-profile.php">Profile</a></li>
-                        <li><a class="bg-white hover:bg-side-navbar py-2 px-4 block whitespace-no-wrap" href="#">Change
+                                href="doctor-profile.php">Profile</a></li>
+                        <li><a class="bg-white hover:bg-side-navbar py-2 px-4 block whitespace-no-wrap" href="doctor-change-pass.php">Change
                                 Password</a></li>
                         <hr>
                         <li><a class="bg-white hover:bg-side-navbar py-2 px-4 block whitespace-no-wrap rounded-b-md"
@@ -102,7 +102,7 @@ session_start();
                     <h1 class="text-3xl text-sidebar-text-bold">Personal Data</h1>
                 </div>
 
-                <form action="./backend files/admin-update.php" method="post">
+                <form action="./backend files/doctor-profile-update.php" method="post">
                     <!-- PROFILE BOX  -->
                     <div class="flex flex-col w-[1636px] h-[530px] mt-[45px] bg-white rounded-[30px] shadow-custom">
 
@@ -111,9 +111,9 @@ session_start();
                         Below the left and right items are the bottom items (honest clause and edit button). -->
 
                         <?php 
-                            // $uid = $_SESSION['userID'];
+                            $uid = $_SESSION['doctorID'];
 
-                            $query = "SELECT * FROM `admin` WHERE doctorID='2'"; // change to the value of $_SESSION['userID']; 
+                            $query = "SELECT * FROM `admin` WHERE doctorID=$uid"; // change to the value of $_SESSION['userID']; 
                             $result = mysqli_query($con, $query);
 
                             while($row = mysqli_fetch_assoc($result)){ ?>
@@ -140,10 +140,10 @@ session_start();
                                             if($len == 1){
                                                 echo "00-000-00".$row['doctorID'];
                                             }
-                                            else if($len == 2){
+                                            else if(len == 2){
                                                 echo "00-000-0".$row['doctorID'];
                                             }
-                                            else if($len == 3){
+                                            else if(len == 3){
                                                 echo "00-000-".$row['doctorID'];
                                             }
                                         ?>
@@ -233,11 +233,8 @@ session_start();
                                 correct to the best of my knowledge.</span>
 
                             <!-- CANCEL BTN  -->
-                            <a href="#">
-                                <button
-                                    class="flex w-[90px] h-[45px] mt-3 ml-[600px] justify-center items-center rounded-3xl shadow-custom hover:scale-105 transform transition-transform duration-300">
-                                    <span class=" text-gray-text text-lg">Cancel</span>
-                                </button>
+                            <a href="doctor-profile.php" class="flex w-[90px] h-[45px] mt-3 ml-[600px] justify-center items-center rounded-3xl shadow-custom hover:scale-105 transform transition-transform duration-300">
+                                <span class=" text-gray-text text-lg">Cancel</span>
                             </a>
 
                             <!-- SAVE BTN  -->

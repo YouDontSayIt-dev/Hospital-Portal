@@ -1,3 +1,11 @@
+<?php
+
+include("../dist/backend files/connection.php");
+include("../dist/backend files/functions.php");
+
+session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,7 +29,7 @@
 
             <!-- nav -->
             <!-- HEALTH BOARD  -->
-            <a href="admin-patient-file.php">
+            <a href="">
                 <div
                     class="flex flex-col lg:w-[125px] lg:h-[144px] bg-white rounded-3xl mx-auto mt-[61px] justify-center items-center space-y-3 hover:scale-105 transform transition-transform duration-300">
                     <img src="../assets/sidebar/patient-active.png" alt="health-board-active">
@@ -30,7 +38,7 @@
             </a>
 
             <!-- APPOINTMENT  -->
-            <a href="admin-appointment.php">
+            <a href="">
                 <div
                     class="flex flex-col lg:w-[125px] lg:h-[144px] rounded-3xl mx-auto justify-center items-center space-y-3 hover:scale-105 transform transition-transform duration-300">
                     <img src="../assets/sidebar/appointment.png" alt="appointment">
@@ -39,7 +47,7 @@
             </a>
 
             <!-- MESSAGE  -->
-            <a href="admin-message.php">
+            <a href="">
                 <div
                     class="flex flex-col lg:w-[125px] lg:h-[144px]  rounded-3xl mx-auto justify-center items-center space-y-3 hover:scale-105 transform transition-transform duration-300">
                     <img src="../assets/sidebar/message.png" alt="message">
@@ -61,12 +69,12 @@
                     <!--profile dropdown-->
                     <ul id="dropdown-menu" class="absolute hidden w-40 right-3 mt-1">
                         <li><a class="bg-white hover:bg-side-navbar py-2 px-4 block whitespace-no-wrap rounded-t-md"
-                                href="#">Profile</a></li>
+                                href="doctor-profile.php">Profile</a></li>
                         <li><a class="bg-white hover:bg-side-navbar py-2 px-4 block whitespace-no-wrap" href="#">Change
                                 Password</a></li>
                         <hr>
                         <li><a class="bg-white hover:bg-side-navbar py-2 px-4 block whitespace-no-wrap rounded-b-md"
-                                href="#">Log out</a></li>
+                                href="splash.php">Log out</a></li>
                     </ul>
                 </div>
 
@@ -101,103 +109,31 @@
 
                     <!-- PATIENT RECORD BOXES UN-ORDERED LIST -->
                     <ul id="patientList" class="space-y-5 mt-5">
-                        <li>
-                            <!-- PATIENT RECORD BOXES  -->
-                            <!-- patient boxes have an inactive default background color except for the selected box  -->
-                            <!-- no shadow -->
-                            <div
-                                class="item w-[483px] h-[58px] bg-background-inactive cursor-pointer ml-4 rounded-3xl flex items-center">
-                                <!-- PATIENT NAME  -->
-                                <div class="ml-7 mr-7">
-                                    <!-- NAME  -->
-                                    <span class="text-[22px]">Aiden Adams</span>
-                                </div>
-                            </div>
-                        </li>
+                        <?php 
+                            $doctorID = $_SESSION['doctorID']; // change to $_SESSION['doctorID']
+                            $query = "SELECT * FROM `user` WHERE doctorID=$doctorID;"; 
+                            $result = mysqli_query($con, $query);
 
-                        <li>
-                            <!-- PATIENT RECORD BOXES  -->
-                            <!-- patient boxes have an inactive default background color except for the selected box  -->
-                            <!-- ACTIVE BOX -->
-                            <div
-                                class="item w-[483px] h-[58px] bg-white cursor-pointer shadow-custom ml-4 rounded-3xl flex items-center">
-                                <!-- PATIENT NAME  -->
-                                <div class="ml-7 mr-7">
-                                    <!-- NAME  -->
-                                    <span class="text-[22px]">Jane Doe</span>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li>
-                            <!-- PATIENT RECORD BOXES  -->
-                            <!-- patient boxes have an inactive default background color except for the selected box  -->
-                            <!-- no shadow -->
-                            <div
-                                class="item w-[483px] h-[58px] bg-background-inactive cursor-pointer  ml-4 rounded-3xl flex items-center">
-                                <!-- PATIENT NAME  -->
-                                <div class="ml-7 mr-7">
-                                    <!-- NAME  -->
-                                    <span class="text-[22px]">Abigail Philips</span>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li>
-                            <!-- PATIENT RECORD BOXES  -->
-                            <!-- patient boxes have an inactive default background color except for the selected box  -->
-                            <!-- no shadow -->
-                            <div
-                                class="item w-[483px] h-[58px] bg-background-inactive cursor-pointer  ml-4 rounded-3xl flex items-center">
-                                <!-- PATIENT NAME  -->
-                                <div class="ml-7 mr-7">
-                                    <!-- NAME  -->
-                                    <span class="text-[22px]">Isabella Clark</span>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li>
-                            <!-- PATIENT RECORD BOXES  -->
-                            <!-- patient boxes have an inactive default background color except for the selected box  -->
-                            <!-- no shadow -->
-                            <div
-                                class="item w-[483px] h-[58px] bg-background-inactive cursor-pointer  ml-4 rounded-3xl flex items-center">
-                                <!-- PATIENT NAME  -->
-                                <div class="ml-7 mr-7">
-                                    <!-- NAME  -->
-                                    <span class="text-[22px]">Bobby Lee</span>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li>
-                            <!-- PATIENT RECORD BOXES  -->
-                            <!-- patient boxes have an inactive default background color except for the selected box  -->
-                            <!-- no shadow -->
-                            <div
-                                class="item w-[483px] h-[58px] bg-background-inactive cursor-pointer ml-4 rounded-3xl flex items-center">
-                                <!-- PATIENT NAME  -->
-                                <div class="ml-7 mr-7">
-                                    <!-- NAME  -->
-                                    <span class="text-[22px]">Leslie Mark</span>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li>
-                            <!-- PATIENT RECORD BOXES  -->
-                            <!-- patient boxes have an inactive default background color except for the selected box  -->
-                            <!-- no shadow -->
-                            <div
-                                class="item w-[483px] h-[58px] bg-background-inactive cursor-pointer ml-4 rounded-3xl flex items-center">
-                                <!-- PATIENT NAME  -->
-                                <div class="ml-7 mr-7">
-                                    <!-- NAME  -->
-                                    <span class="text-[22px]">Carolina Bitter</span>
-                                </div>
-                            </div>
-                        </li>
+                            while($row = mysqli_fetch_assoc($result)){ 
+                        ?>
+                            <li> <!-- admin-patient-file.php?patientID=<?php echo $row['userID']; ?> -->
+                                <a href="./backend files/display-patient-record.php?ID=<?php echo $row['userID'];?>">
+                                    <!-- PATIENT RECORD BOXES  -->
+                                    <!-- patient boxes have an inactive default background color except for the selected box  -->
+                                    <!-- no shadow -->
+                                    <div
+                                        class="item w-[483px] h-[58px] bg-background-inactive cursor-pointer ml-4 rounded-3xl flex items-center">
+                                        <!-- PATIENT NAME  -->
+                                        <div class="ml-7 mr-7">
+                                            <!-- NAME  -->
+                                            <span class="text-[22px]"><?php echo $row["first_name"]." ".$row["last_name"];?></span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        <?php
+                            }
+                        ?>
                     </ul>
 
                 </div>
@@ -205,364 +141,393 @@
 
                 <!-- PATIENT DETAILS -->
                 <div class="flex flex-col w-[1050px] h-[800px] rounded-xl bg-white mt-5 shadow-custom overflow-auto">
+                    <?php 
+                        $patientID = $_SESSION['patientID'];
+                        $query = "SELECT * FROM `user` WHERE userID=$patientID;";
+                        $result = mysqli_query($con, $query);
+
+                        while($row = mysqli_fetch_assoc($result)){ 
+                    ?>
                     <!--PATIENT ICON & NUMBER-->
                     <div class="flex  flex-row  w-full justify-between items-center">
                         <!-- PATIENT NAME-->
                         <div class="flex flex-row justify-center items-center mt-3 ml-5">
                             <img src="../assets/doctor-sample.png" alt="doctor" class="w-20 h-20 rounded-full mr-6">
-                            <h1 class="text-[40px]">Jane Doe</h1>
+                            <h1 class="text-[40px]"><?php echo $row["first_name"]." ".$row["last_name"];?></h1>
                         </div>
 
                         <!-- PATIENT NUMBER -->
                         <div class="flex flex-col mt-8 mr-8 text-center">
                             <span class="text-sm text-gray-text">Patient Number</span>
-                            <span class="text-sm ">00-0000-00</span>
+                            <span class="text-sm ">
+                                <?php 
+                                    $len = strlen($row['userID']);
+                                    if($len == 1){
+                                        echo "00-000-00".$row['userID'];
+                                    }
+                                    else if(len == 2){
+                                        echo "00-000-0".$row['userID'];
+                                    }
+                                    else if(len == 3){
+                                        echo "00-000-".$row['userID'];
+                                    }
+                                ?>                                
+                            </span>
                         </div>
                     </div>
+                    <?php
+                        }
+                    ?>
 
-                    <!-- PATIENT INFORMATION -->
-                    <div class="flex flex-row mx-12 mt-2 mb-16">
-                        <div class="flex-col w-1/2">
-                            <table class="w-full h-fit border-collapse">
+                    <form action="./backend files/doctor-patient-file-update.php" method="post">
+                        <?php 
+                            // only the latest record should show
+                            $patientID = $_SESSION['patientID'];
+                            $query = "SELECT * FROM `patient details` where userID=$patientID ORDER BY patientID DESC limit 1;";
+                            $result = mysqli_query($con, $query);
 
-                                <!-- AGE -->
-                                <tr class="h-10 text-xl font-normal text-left ">
-                                    <th class="w-[30%] text-lg text-side-navbar-active-text font-normal">
-                                        Age</th>
-                                    <!-- AGE VALUE -->
-                                    <td><input
-                                            class="w-[70%]  h-[35px] pl-10 pr-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
-                                            type="edit" name="age-edit" placeholder="21 years old">
-                                    </td>
-                                </tr>
+                            while($row = mysqli_fetch_assoc($result)){ 
+                        ?>
+                        <!-- PATIENT INFORMATION -->
+                        <div class="flex flex-row mx-12 mt-2 mb-16">
+                            <div class="flex-col w-1/2">
+                                <table class="w-full h-fit border-collapse">
 
-                                <!-- BIRTH DATE -->
-                                <tr class="h-10 text-xl font-normal text-left">
-                                    <th class="w-[30%] text-lg text-side-navbar-active-text font-normal">
-                                        Birth Date</th>
-                                    <!-- BIRTH DATE VALUE -->
-                                    <td><input
-                                            class="w-[70%] h-[35px] pl-10 pr-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
-                                            type="edit" name="birth-date-edit" placeholder="Nov 09, 2001">
-                                    </td>
-                                </tr>
+                                    <!-- AGE -->
+                                    <tr class="h-10 text-xl font-normal text-left ">
+                                        <th class="w-[30%] text-lg text-side-navbar-active-text font-normal">
+                                            Age</th>
+                                        <!-- AGE VALUE -->
+                                        <td><input
+                                                class="w-[70%]  h-[35px] pl-10 pr-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
+                                                type="number" name="age-edit" placeholder="<?php echo $row["Age"]." years old" ?>" value="<?php echo $row["Age"];?>">
+                                        </td>
+                                    </tr>
 
-                                <!-- BLOOD -->
-                                <tr class="h-10 text-xl font-normal text-left">
-                                    <th class="w-[30%] text-lg text-side-navbar-active-text font-normal">
-                                        Blood</th>
-                                    <!-- BLOOD VALUE -->
-                                    <td><input
-                                            class="w-[70%]  h-[35px] pl-10 pr-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
-                                            type="edit" name="blood-edit" placeholder="+O">
-                                    </td>
-                                </tr>
+                                    <!-- BIRTH DATE -->
+                                    <tr class="h-10 text-xl font-normal text-left">
+                                        <th class="w-[30%] text-lg text-side-navbar-active-text font-normal">
+                                            Birth Date</th>
+                                        <!-- BIRTH DATE VALUE -->
+                                        <td><input
+                                                class="w-[70%] h-[35px] pl-10 pr-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
+                                                type="text" name="birth-date-edit" placeholder="Nov 09, 2001">
+                                        </td>
+                                    </tr>
 
-                                <!-- HEIGHT -->
-                                <tr class="h-10 text-xl font-normal text-left">
-                                    <th class="w-[30%] text-lg text-side-navbar-active-text font-normal">
-                                        Height</th>
-                                    <!-- HEIGHT VALUE -->
-                                    <td><input
-                                            class="w-[70%]   h-[35px] pl-10 pr-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
-                                            type="edit" name="height-edit" placeholder="156cm">
-                                    </td>
-                                </tr>
+                                    <!-- BLOOD -->
+                                    <tr class="h-10 text-xl font-normal text-left">
+                                        <th class="w-[30%] text-lg text-side-navbar-active-text font-normal">
+                                            Blood</th>
+                                        <!-- BLOOD VALUE -->
+                                        <td><input
+                                                class="w-[70%]  h-[35px] pl-10 pr-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
+                                                type="text" name="blood-edit" placeholder="<?php echo $row["Blood"]; ?>" value="<?php echo $row["Blood"]; ?>">
+                                        </td>
+                                    </tr>
 
-                                <!-- WEIGHT -->
-                                <tr class="h-10 text-xl font-normal text-left">
-                                    <th class="w-[30%] text-lg text-side-navbar-active-text font-normal">
-                                        Weight</th>
-                                    <!-- WEIGHT VALUE -->
-                                    <td><input
-                                            class="w-[70%]  h-[35px] pl-10 pr-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
-                                            type="edit" name="weight-edit" placeholder="65kg">
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
+                                    <!-- HEIGHT -->
+                                    <tr class="h-10 text-xl font-normal text-left">
+                                        <th class="w-[30%] text-lg text-side-navbar-active-text font-normal">
+                                            Height</th>
+                                        <!-- HEIGHT VALUE -->
+                                        <td><input
+                                                class="w-[70%]   h-[35px] pl-10 pr-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
+                                                type="number" name="height-edit" placeholder="<?php echo $row["Height"]."cm"; ?>" value="<?php echo $row["Height"]; ?>">
+                                        </td>
+                                    </tr>
 
-                        <div class="flex-col w-1/2">
-                            <table class="w-[95%] h-fit border-collapse">
-
-                                <!-- TEMPERATURE -->
-                                <tr class="h-10 text-xl font-normal text-left ">
-                                    <th class="w-[30%] text-lg text-side-navbar-active-text font-normal">
-                                        Temperature</th>
-                                    <!-- TEMPERATURE VALUE -->
-                                    <td><input
-                                            class="w-[70%]  h-[35px] pl-10 pr-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
-                                            type="edit" name="temperature-edit" placeholder="36.5 °C">
-                                    </td>
-                                </tr>
-
-                                <!-- OXYGEN LEVEL -->
-                                <tr class="h-10 text-xl font-normal text-left">
-                                    <th class="w-[30%] text-lg text-side-navbar-active-text font-normal">
-                                        Oxygen Level</th>
-                                    <!-- OXYGEN LEVEL VALUE -->
-                                    <td><input
-                                            class="w-[70%]  h-[35px] pl-10 pr-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
-                                            type="edit" name="oxygen-edit" placeholder="97%">
-                                    </td>
-                                </tr>
-
-                                <!-- PULSE RATE -->
-                                <tr class="h-10 text-xl font-normal text-left">
-                                    <th class="w-[30%] text-lg text-side-navbar-active-text font-normal">
-                                        Pulse Rate</th>
-                                    <!-- PULSE RATE VALUE -->
-                                    <td><input
-                                            class="w-[70%]  h-[35px] pl-10 pr-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
-                                            type="edit" name="pulse-rate-edit" placeholder="96">
-                                    </td>
-                                </tr>
-
-                                <!-- BLOOD PRESSURE -->
-                                <tr class="h-10 text-xl font-normal text-left">
-                                    <th class="w-[30%] text-lg text-side-navbar-active-text font-normal">
-                                        Blood Pressure</th>
-                                    <!-- BLOOD PRESSURE VALUE -->
-                                    <td><input
-                                            class="w-[70%]  h-[35px] pl-10 pr-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
-                                            type="edit" name="blood-pressure-edit" placeholder="120/80">
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-
-
-                    <!-- PATIENT NOTE & DIAGNOSIS -->
-                    <div class="flex flex-row mx-12 mb-16">
-
-                        <div class="flex-col w-1/2">
-                            <!-- PATIENT NOTE -->
-
-                            <div class="mb-3">
-                                <span class="text-lg text-side-navbar-active-text font-normal">Note</span>
+                                    <!-- WEIGHT -->
+                                    <tr class="h-10 text-xl font-normal text-left">
+                                        <th class="w-[30%] text-lg text-side-navbar-active-text font-normal">
+                                            Weight</th>
+                                        <!-- WEIGHT VALUE -->
+                                        <td><input
+                                                class="w-[70%]  h-[35px] pl-10 pr-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
+                                                type="number" name="weight-edit" placeholder="<?php echo $row["Weight"]."kg"; ?>" value="<?php echo $row["Weight"]; ?>">
+                                        </td>
+                                    </tr>
+                                </table>
                             </div>
 
-                            <!-- PATIENT NOTE BOXES-->
-                            <div class="flex flex-row items-center w-4/5">
-                                <img src="../assets/bullet-point.png" class="w-3 h-3 mr-[27px]">
-                                <p class="text-lg">Due to your medication, you might get dehydrated so drink lots of
-                                    water.</p>
-                            </div>
+                            <div class="flex-col w-1/2">
+                                <table class="w-[95%] h-fit border-collapse">
 
-                            <!-- PATIENT NOTE BOXES-->
-                            <div class="flex flex-row items-center w-4/5">
-                                <img src="../assets/bullet-point.png" class="w-3 h-3 mr-[27px]">
-                                <p class="text-lg">Don’t skip meals</p>
-                            </div>
+                                    <!-- TEMPERATURE -->
+                                    <tr class="h-10 text-xl font-normal text-left ">
+                                        <th class="w-[30%] text-lg text-side-navbar-active-text font-normal">
+                                            Temperature</th>
+                                        <!-- TEMPERATURE VALUE -->
+                                        <td><input
+                                                class="w-[70%]  h-[35px] pl-10 pr-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
+                                                type="text" name="temperature-edit" placeholder="<?php echo $row["Temperature"]." °C"; ?>" value="<?php echo $row["Temperature"]; ?>">
+                                        </td>
+                                    </tr>
 
-                            <!-- PATIENT NOTE BOXES-->
-                            <div class="flex flex-row items-center w-4/5">
-                                <img src="../assets/bullet-point.png" class="w-3 h-3 mr-[27px]">
-                                <p class="text-lg">Get enough sleep</p>
-                            </div>
+                                    <!-- OXYGEN LEVEL -->
+                                    <tr class="h-10 text-xl font-normal text-left">
+                                        <th class="w-[30%] text-lg text-side-navbar-active-text font-normal">
+                                            Oxygen Level</th>
+                                        <!-- OXYGEN LEVEL VALUE -->
+                                        <td><input
+                                                class="w-[70%]  h-[35px] pl-10 pr-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
+                                                type="number" name="oxygen-edit" placeholder="<?php echo $row["Oxygen Level"]."%"; ?>" value="<?php echo $row["Oxygen Level"]; ?>">
+                                        </td>
+                                    </tr>
 
-                            <!-- EDIT PATIENT NOTE BOXES-->
-                            <div class="flex flex-row items-center w-4/5">
-                                <img src="../assets/bullet-point.png" class="w-3 h-3 mr-[27px]">
-                                <input
-                                    class="w-full  h-[35px] pl-5 pr-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
-                                    type="edit" name="note-edit" placeholder="Note">
+                                    <!-- PULSE RATE -->
+                                    <tr class="h-10 text-xl font-normal text-left">
+                                        <th class="w-[30%] text-lg text-side-navbar-active-text font-normal">
+                                            Pulse Rate</th>
+                                        <!-- PULSE RATE VALUE -->
+                                        <td><input
+                                                class="w-[70%]  h-[35px] pl-10 pr-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
+                                                type="number" name="pulse-rate-edit" placeholder="<?php echo $row["Pulse Rate"]; ?>" value="<?php echo $row["Pulse Rate"]; ?>">
+                                        </td>
+                                    </tr>
+
+                                    <!-- BLOOD PRESSURE -->
+                                    <tr class="h-10 text-xl font-normal text-left">
+                                        <th class="w-[30%] text-lg text-side-navbar-active-text font-normal">
+                                            Blood Pressure</th>
+                                        <!-- BLOOD PRESSURE VALUE -->
+                                        <td><input
+                                                class="w-[70%]  h-[35px] pl-10 pr-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
+                                                type="text" name="blood-pressure-edit" placeholder="<?php echo $row["Blood Pressure"]; ?>" value="<?php echo $row["Blood Pressure"]; ?>">
+                                        </td>
+                                    </tr>
+                                </table>
                             </div>
                         </div>
+                        <?php
+                            }
+                        ?>
+                        
 
-                        <div class="flex-col w-1/2">
-                            <!-- PATIENT DIAGNOSIS -->
-                            <div class="mb-3">
-                                <span class="text-lg text-side-navbar-active-text font-normal">Diagnosis</span>
+                        <!-- PATIENT NOTE & DIAGNOSIS -->
+                        <div class="flex flex-row mx-12 mb-16">
+
+                            <div class="flex-col w-1/2">
+                                <!-- PATIENT NOTE -->
+
+                                <div class="mb-3">
+                                    <span class="text-lg text-side-navbar-active-text font-normal">Note</span>
+                                </div>
+
+                                <?php 
+                                    $patientID = $_SESSION['patientID'];
+                                    $doctorID = $_SESSION['doctorID']; // change to $_SESSION['doctorID'];
+                                    $query = "SELECT * FROM `notes` WHERE userID=$patientID AND doctorID=$doctorID;";
+                                    $result = mysqli_query($con, $query);
+
+                                    while($row = mysqli_fetch_assoc($result)){ 
+                                ?>
+                                <!-- PATIENT NOTE BOXES-->
+                                <div class="flex flex-row items-center w-4/5">
+                                    <img src="../assets/bullet-point.png" class="w-3 h-3 mr-[27px]">
+                                    <p class="text-lg"><?php echo $row['notes'] ?></p>
+                                </div>
+                                <?php
+                                    }
+                                ?>
+
+                                <!-- EDIT PATIENT NOTE BOXES-->
+                                <div class="flex flex-row items-center w-4/5">
+                                    <img src="../assets/bullet-point.png" class="w-3 h-3 mr-[27px]">
+                                    <input
+                                        class="w-full  h-[35px] pl-5 pr-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
+                                        type="text" name="note-edit" placeholder="Note">
+                                </div>
                             </div>
 
-                            <!-- PATIENT DIAGNOSIS BOXES-->
-                            <div class="flex flex-row mb-3">
-                                <div class="flex flex-row items-center">
-                                    <img src="../assets/Rectangle-yellow.png" class="w-[6px] h-[56px] mr-[12px]">
-                                    <div>
-                                        <p class="text-2xl">Diabetes</p>
-                                        <p class="text-gray-text text-base">July 9, 2021 | Ongoing treatment</p>
-                                    </div>
+                            <div class="flex-col w-1/2">
+                                <!-- PATIENT DIAGNOSIS -->
+                                <div class="mb-3">
+                                    <span class="text-lg text-side-navbar-active-text font-normal">Diagnosis</span>
                                 </div>
 
                                 <!-- PATIENT DIAGNOSIS BOXES-->
-                                <div class="flex flex-row items-center">
-                                    <img src="../assets/Rectangle-blue.png" class="w-[6px] h-[56px] mr-[12px]">
-                                    <div>
-                                        <p class="text-2xl">Diabetes</p>
-                                        <p class="text-gray-text text-base">July 9, 2021 | Ongoing treatment</p>
-                                    </div>
-                                </div>
-                            </div>
+                                <div class="flex flex-row flex-wrap gap-2 mb-3">
+                                    <?php 
+                                        $patientID = $_SESSION['patientID'];
+                                        $doctorID = $_SESSION['doctorID']; // change to $_SESSION['doctorID'];
+                                        $query = "SELECT * FROM `illness` WHERE date=(SELECT MAX(date) from illness) AND userID=$patientID AND doctorID=$doctorID;";
+                                        $result = mysqli_query($con, $query);
 
-                            <!--EDIT PATIENT DIAGNOSIS BOXES-->
-                            <div class="flex flex-row">
-                                <div class="flex flex-row items-center">
-                                    <img src="../assets/Rectangle-gray.png" class="w-[6px] h-[56px] mr-[12px]">
-                                    <div>
-                                        <input
-                                            class="w-[200px]  h-[35px] pl-5 pr-3 mb-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
-                                            type="edit" name="diagnosis-edit" placeholder="Diagnosis">
-                                        <div class="flex flex-row">
+                                        while($row = mysqli_fetch_assoc($result)){ 
+                                    ?>
+                                    <div class="flex flex-row items-center">
+                                        <img src="../assets/Rectangle-yellow.png" class="w-[6px] h-[56px] mr-[12px]">
+                                        <div>
+                                            <p class="text-2xl"><?php echo $row["Illness"]; ?></p>
+                                            <p class="text-gray-text text-base"><?php echo date("m-d-Y", strtotime($row['date']))." | ".$row['status']; ?> </p>
+                                        </div>
+                                    </div>
+                                    <?php
+                                        }
+                                    ?>
+                                </div>
+
+                                <!--EDIT PATIENT DIAGNOSIS BOXES-->
+                                <div class="flex flex-row">
+                                    <div class="flex flex-row items-center">
+                                        <img src="../assets/Rectangle-gray.png" class="w-[6px] h-[56px] mr-[12px]">
+                                        <div>
                                             <input
-                                                class="w-[90px]  h-[35px] pl-5 pr-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
-                                                type="edit" name="date-edit" placeholder="Date">
-                                            <span class="mr-2 ml-2">|</span>
-                                            <input
-                                                class="w-[90px]  h-[35px] pl-5 pr-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
-                                                type="edit" name="treatment-edit" placeholder="Treatment">
+                                                class="w-[200px]  h-[35px] pl-5 pr-3 mb-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
+                                                type="text" name="diagnosis-edit" placeholder="Diagnosis">
+                                            <div class="flex flex-row">
+                                                <input
+                                                    class="w-[90px]  h-[35px] pl-5 pr-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
+                                                    type="date" name="date-edit" placeholder="Date">
+                                                <span class="mr-2 ml-2">|</span>
+                                                <input
+                                                    class="w-[90px]  h-[35px] pl-5 pr-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
+                                                    type="text" name="treatment-edit" placeholder="Treatment">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
 
-                    </div>
+                        <!-- PATIENT LAB & PRESCRIPTION -->
+                        <div class="flex flex-row mx-12 mb-16">
+                            <div class="flex-col w-1/2">
 
-                    <!-- PATIENT LAB & PRESCRIPTION -->
-                    <div class="flex flex-row mx-12 mb-16">
-                        <div class="flex-col w-1/2">
-
-                            <!-- PATIENT LAB RESULT -->
-                            <div class="mb-3">
-                                <span class="text-lg text-side-navbar-active-text font-normal">Current Laboratory
-                                    Results</span>
-                            </div>
-
-
-                            <!-- PATIENT LAB BOXES -->
-                            <div class="flex flex-row items-center mb-[19px]">
-                                <img src="../assets/Rectangle-yellow.png" class="w-[6px] h-[80px] mr-[12px]">
-                                <div class="flex flex-col">
-                                    <div class="flex flex-row justify-between w-[350px]">
-                                        <p class="text-2xl">FBS (Glucose)</p>
-                                        <p class="text-2xl">7.8 mmol/L</p>
-                                    </div>
-                                    <p class="text-gray-text text-base">July 9, 2021</p>
-                                    <p class="text-gray-text text-base">Normal Range: 3.9 - 6.4 mmol/L </p>
+                                <!-- PATIENT LAB RESULT -->
+                                <div class="mb-3">
+                                    <span class="text-lg text-side-navbar-active-text font-normal">Current Laboratory
+                                        Results</span>
                                 </div>
-                            </div>
 
-                            <!-- PATIENT LAB BOXES -->
-                            <div class="flex flex-row items-center mb-[19px]">
-                                <img src="../assets/Rectangle-blue.png" class="w-[6px] h-[80px] mr-[12px]">
-                                <div class="flex flex-col">
-                                    <div class="flex flex-row justify-between w-[350px]">
-                                        <p class="text-2xl">HbA1c</p>
-                                        <p class="text-2xl">6.5%</p>
+                                <?php 
+                                    $patientID = $_SESSION['patientID'];
+                                    $doctorID = $_SESSION['doctorID']; // change to $_SESSION['doctorID'];
+                                    $query = "SELECT * FROM `lab_results` WHERE date=(SELECT MAX(date) from `lab_results`) AND userid=$patientID AND doctorID = $doctorID;";
+                                    $result = mysqli_query($con, $query);
+
+                                    while($row = mysqli_fetch_assoc($result)){ 
+                                ?>
+
+                                <!-- PATIENT LAB BOXES -->
+                                <div class="flex flex-row items-center mb-[19px]">
+                                    <img src="../assets/Rectangle-yellow.png" class="w-[6px] h-[80px] mr-[12px]">
+                                    <div class="flex flex-col">
+                                        <div class="flex flex-row justify-between w-[350px]">
+                                            <p class="text-2xl"><?php echo $row['lab_test']; ?></p>
+                                            <p class="text-2xl"><?php echo $row['lab_result']; ?></p>
+                                        </div>
+                                        <p class="text-gray-text text-base"><?php echo date("m-d-Y", strtotime($row['date'])); ?></p>
+                                        <p class="text-gray-text text-base">Normal Range: <?php echo $row['normal_range']; ?></p>
                                     </div>
-                                    <p class="text-gray-text text-base">July 9, 2021</p>
-                                    <p class="text-gray-text text-base">Normal Range: 0.0 - 6.5% </p>
                                 </div>
-                            </div>
+                                <?php
+                                    }
+                                ?>
 
-                            <!-- EDIT  PATIENT LAB BOXES -->
-                            <div class="flex flex-row items-center mb-[19px]">
-                                <img src="../assets/Rectangle-gray.png" class="w-[6px] h-[80px] mr-[12px]">
-                                <div class="flex flex-col">
-                                    <div class="flex flex-row justify-between w-[350px] mb-2">
+                                <!-- EDIT  PATIENT LAB BOXES -->
+                                <div class="flex flex-row items-center mb-[19px]">
+                                    <img src="../assets/Rectangle-gray.png" class="w-[6px] h-[80px] mr-[12px]">
+                                    <div class="flex flex-col">
+                                        <div class="flex flex-row justify-between w-[350px] mb-2">
+                                            <input
+                                                class="w-[170px]  h-[35px] pl-5 pr-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
+                                                type="text" name="laboratory-edit" placeholder="Laboratory">
+                                            <input
+                                                class="w-[170px]  h-[35px] pl-5 pr-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
+                                                type="text" name="result-edit" placeholder="Result">
+                                        </div>
                                         <input
-                                            class="w-[170px]  h-[35px] pl-5 pr-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
-                                            type="edit" name="laboratory-edit" placeholder="Laboratory">
+                                            class="w-[100px]  h-[35px] pl-5 pr-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
+                                            type="date" name="lab-date-edit" placeholder="Date">
+                                        <p class="text-gray-text text-base">Normal Range: <input
+                                                class="w-[250px]  h-[35px] pl-5 pr-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
+                                                type="text" name="range-edit" placeholder="Range"></p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="flex-col w-1/2">
+                                <!-- PATIENT PRESCIPTION -->
+                                <div class="mb-3">
+                                    <span class="text-lg text-side-navbar-active-text font-normal">
+                                        Prescription</span>
+                                </div>
+
+                                <?php 
+                                    $patientID = $_SESSION['patientID'];
+                                    $doctorID = $_SESSION['doctorID']; // change to $_SESSION['doctorID'];
+                                    $query = "SELECT * FROM `illness` as a, `medication` as b WHERE a.illnessID = b.illnessID AND a.date=(SELECT MAX(a.date) from illness) AND a.userID=$patientID AND a.doctorID=$doctorID;";
+                                    $result = mysqli_query($con, $query);
+
+                                    while($row = mysqli_fetch_assoc($result)){ 
+                                ?>
+
+                                <!-- PATIENT PRESCRIPTION BOXES -->
+                                <div class="flex flex-row items-center mb-[19px]">
+                                    <img src="../assets/Rectangle-yellow.png" class="w-[6px] h-[86px] mr-[12px]">
+                                    <div class="flex flex-col">
+                                        <p class="text-2xl"><?php echo $row['medicine'] ?></p>
+                                        <div class="flex flex-row justify-between w-[250px]">
+                                            <p class="text-lg"><?php echo $row['dosage'] ?></p>
+                                            <p class="text-base text-gray-text"><?php echo $row['schedule'] ?></p>
+                                        </div>
+                                        <p class="text-lg"><?php echo $row['notes'] ?></p>
+                                    </div>
+                                </div>
+                                <?php
+                                    }
+                                ?>
+
+                                <!-- EDIT PATIENT PRESCRIPTION BOXES -->
+                                <div class="flex flex-row items-center mb-[19px]">
+                                    <img src="../assets/Rectangle-gray.png" class="w-[6px] h-[86px] mr-[12px]">
+                                    <div class="flex flex-col">
                                         <input
-                                            class="w-[170px]  h-[35px] pl-5 pr-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
-                                            type="edit" name="result-edit" placeholder="Result">
-                                    </div>
-                                    <input
-                                        class="w-[100px]  h-[35px] pl-5 pr-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
-                                        type="edit" name="result-edit" placeholder="Date">
-                                    <p class="text-gray-text text-base">Normal Range: <input
-                                            class="w-[250px]  h-[35px] pl-5 pr-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
-                                            type="edit" name="range-edit" placeholder="Range"></p>
-                                </div>
-                            </div>
-                        </div>
+                                            class="w-full  h-[35px] pl-5 pr-3 mb-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
+                                            type="text" name="medication-edit" placeholder="Medication">
 
-
-                        <div class="flex-col w-1/2">
-                            <!-- PATIENT PRESCIPTION -->
-                            <div class="mb-3">
-                                <span class="text-lg text-side-navbar-active-text font-normal">
-                                    Prescription</span>
-                            </div>
-
-                            <!-- PATIENT PRESCRIPTION BOXES -->
-                            <div class="flex flex-row items-center mb-[19px]">
-                                <img src="../assets/Rectangle-yellow.png" class="w-[6px] h-[86px] mr-[12px]">
-                                <div class="flex flex-col">
-                                    <p class="text-2xl">Metformin (Glumet XR)</p>
-                                    <div class="flex flex-row justify-between w-[250px]">
-                                        <p class="text-lg">500mg</p>
-                                        <p class="text-base text-gray-text">Everyday</p>
-                                    </div>
-                                    <p class="text-lg">Take one (1) tablet after breakfast and dinner </p>
-                                </div>
-                            </div>
-
-                            <!-- PATIENT PRESCRIPTION BOXES -->
-                            <div class="flex flex-row items-center mb-[19px]">
-                                <img src="../assets/Rectangle-blue.png" class="w-[6px] h-[86px] mr-[12px]">
-                                <div class="flex flex-col">
-                                    <p class="text-2xl">Dapagliflozin + Metformin (Xigduo)</p>
-                                    <div class="flex flex-row justify-between w-[250px]">
-                                        <p class="text-lg">10/1000mg</p>
-                                        <p class="text-base text-gray-text">Everyday</p>
-                                    </div>
-                                    <p class="text-lg">Take one (1) tablet after breakfast and dinner </p>
-                                </div>
-                            </div>
-
-                            <!-- EDIT PATIENT PRESCRIPTION BOXES -->
-                            <div class="flex flex-row items-center mb-[19px]">
-                                <img src="../assets/Rectangle-gray.png" class="w-[6px] h-[86px] mr-[12px]">
-                                <div class="flex flex-col">
-                                    <input
-                                        class="w-full  h-[35px] pl-5 pr-3 mb-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
-                                        type="edit" name="medication-edit" placeholder="Medication">
-
-                                    <div class="flex flex-row justify-between w-[300px]">
-                                        <span class="text-lg"> <input
+                                        <div class="flex flex-row justify-between w-[300px]">
+                                            <span class="text-lg"> <input
+                                                    class="w-[120px]  h-[35px] pl-5 pr-3 mb-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
+                                                    type="text" name="dosage-edit" placeholder="00">mg</span>
+                                            <input
                                                 class="w-[120px]  h-[35px] pl-5 pr-3 mb-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
-                                                type="edit" name="dosage-edit" placeholder="00">mg</span>
+                                                type="text" name="daily-basis-edit" placeholder="Daily basis">
+                                        </div>
                                         <input
-                                            class="w-[120px]  h-[35px] pl-5 pr-3 mb-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
-                                            type="edit" name="daily-basis-edit" placeholder="Daily basis">
+                                            class="w-full  h-[35px] pl-5 pr-3 mb-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
+                                            type="text" name="instruction-edit" placeholder="Instruction">
                                     </div>
-                                    <input
-                                        class="w-full  h-[35px] pl-5 pr-3 mb-3 leading-5 text-black placeholder-gray-500 bg-form-fill border border-gray-200 rounded-full focus:outline-none sm:text-sm"
-                                        type="edit" name="instruction-edit" placeholder="Instruction">
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- BOTTOM BUTTON -->
-                    <div class="flex  w-full justify-end items-center ">
-                        <!-- CNCL BTN  -->
-                        <a href="#">
-                            <button
+                        <!-- BOTTOM BUTTON -->
+                        <div class="flex  w-full justify-end items-center ">
+                            <!-- CNCL BTN  -->
+                            <a href="doctor-patient-file.php"
                                 class="flex w-[90px] h-[45px] mt-3 mb-5  justify-center items-center rounded-3xl shadow-custom hover:scale-105 transform transition-transform duration-300">
                                 <span class=" text-gray-text text-lg">Cancel</span>
-                            </button>
-                        </a>
+                            </a>
 
-                        <!-- SAVE BTN  -->
-                        <a href="#">
+                            <!-- SAVE BTN  -->
                             <button
                                 class="flex w-[90px] h-[45px] bg-save-button mt-3 ml-5 mr-5 mb-5 justify-center items-center rounded-3xl shadow-custom hover:scale-105 transform transition-transform duration-300">
                                 <span class=" text-gray-text text-lg">Save</span>
                             </button>
-                        </a>
-                    </div>
+                        </div>
+                    </form>
                 </div>
 
             </div>
         </div>
     </div>
-    <script src="../dist/JS animations/profile-dropdown.js"></script>
-    <script src="../dist/JS animations/active-bg.js"></script>
+    <script src="./JS animations/profile-dropdown.js"></script>
+    <script src="./JS animations/active-bg.js"></script>
 </body>
 
 </html>
