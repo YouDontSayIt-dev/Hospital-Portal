@@ -20,14 +20,7 @@ function updateText(value) {
 let doctorMenu = document.getElementById('doctorMenu');
 let doctorDropdown = document.getElementById('doctorDropdown');
 let doctorBox = document.getElementById('doctorBox');
-let doctorSel = document.getElementById('docID');
-
-let booking = [];
-
-var book1 = document.getElementById("book1");
-var book2 = document.getElementById("book2");
-var book3 = document.getElementById("book3");
-
+let doctorSel = document.getElementById('docID')
 
 let appointmentDetails = document.getElementById('appointmentDetails');
 
@@ -40,20 +33,8 @@ doctorMenu.onclick = function () {
 function updateDoctorText(value) {
     doctorBox.value = value;
     doctorSelect.value = value;
-    doctorID.value = docID.getAttribute('name');
     console.log(docID);
-    console.log(docDay);
-    var text = [docDay.getAttribute('value')];
-    var packed = text.toString();
-    var unpacked = packed.split(',');
-    var num = unpacked.map(Number);
-    var b1 = num[0];
-    var b2 = num[1];
-    var b3 = num[2];
-    console.log(b1,b2,b3);
-    book1.value = b1;
-    book2.value = b2;
-    book3.value = b3;
+    doctorID.value = docID.getAttribute('name');
     doctorDropdown.style.display = "none";
 }
 

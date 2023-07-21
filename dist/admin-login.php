@@ -5,22 +5,22 @@ include("../dist/backend files/connection.php");
 include("../dist/backend files/functions.php");
 
 if(isset($_POST['submit'])){
-    $adminID = $_POST['adminID'];
+    $email = $_POST['email'];
     $password = $_POST['password'];
 
     //test commit
 
-    if(!empty($adminID) && !empty($password)){
+    if(!empty($email) && !empty($password)){
         // read from database
-        $query = "select * from root where adminID = '$adminID' limit 1";
+        $query = "select * from admin where email = '$email' limit 1";
         $result = mysqli_query($con, $query);
 
         if($result){
             if($result && mysqli_num_rows($result) > 0){
-                $admin_data = mysqli_fetch_assoc($result);
-                if($admin_data['password'] === $password){
-                    $_SESSION['adminID'] = $admin_data['adminID'];
-                    header("Location: admin-finance.php");
+                $doctor_data = mysqli_fetch_assoc($result);
+                if($doctor_data['password'] === $password){
+                    $_SESSION['doctorID'] = $doctor_data['doctorID'];
+                    header("Location: doctor-patient-file.php");
                     die;
                 }
             }
@@ -55,7 +55,7 @@ if(isset($_POST['submit'])){
                 <h class="font-Commissioner text-5xl pb-5 w-[60%] text-gray-500 text-center leading-tight">Welcome back, have a nice day!</h>
                 <form class="w-[50%] font-Commissioner" method="post">
                     <div class="mb-6">
-                        <input class="shadow appearance-none border rounded-[200px] border-slate-500 w-full py-5 px-7 text-gray-700 text-center text-2xl leading-tight focus:outline-none focus:shadow-outline" name="adminID" type="text" placeholder="adminID">
+                        <input class="shadow appearance-none border rounded-[200px] border-slate-500 w-full py-5 px-7 text-gray-700 text-center text-2xl leading-tight focus:outline-none focus:shadow-outline" name="email" type="text" placeholder="Email">
                     </div>
                     <div class="mb-6">
                         <input class="shadow appearance-none border rounded-[200px] border-slate-500 w-full py-5 px-7 text-gray-700 text-center text-2xl mb-3 leading-tight focus:outline-none focus:shadow-outline" name="password" type="password" placeholder="Password">
@@ -65,6 +65,9 @@ if(isset($_POST['submit'])){
                         text-center text-2xl mb-3 leading-tight focus:outline-none focus:shadow-outline" name="submit"  type="submit" placeholder="">
                     </div>
                 </form>
+                <a class="inline-block align-baseline font-bold text-md text-gray-500  hover:text-gray-900 " href="#">
+                    Forgot Password?
+                </a>
                 <p class="font-Commissioner pt-20 w-[60%] text-center text-gray-500 ">By using this service, you understood and agree to the ISY Online Services Terms of Use and Privacy Statement</p>
             </div>
         </div>
