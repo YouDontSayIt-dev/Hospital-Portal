@@ -20,6 +20,15 @@ if(isset($_POST['submit'])){
                 $doctor_data = mysqli_fetch_assoc($result);
                 if($doctor_data['password'] === $password){
                     $_SESSION['doctorID'] = $doctor_data['doctorID'];
+
+                    // set initial $_SESSION['patientID'] para may makikita na agad sa doctor patient file 
+
+                    $query = "SELECT * FROM `user` WHERE doctorID='".$_SESSION['doctorID']."' limit 1;"; 
+                    $result = mysqli_query($con, $query);
+                    while($row = mysqli_fetch_assoc($result)){ 
+                        $_SESSION['patientID'] = $row['userID'];
+                    }
+
                     header("Location: doctor-patient-file.php");
                     die;
                 }

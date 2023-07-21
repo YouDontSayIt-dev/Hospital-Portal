@@ -5,7 +5,6 @@ include("../dist/backend files/connection.php");
 include("../dist/backend files/functions.php");
 
 $user_data = check_user_login($con); //collect user data and check connection
-$userID = $user_data['userID'];
 
 
 ?>
@@ -32,7 +31,7 @@ $userID = $user_data['userID'];
             </a>
             <!-- nav -->
             <!-- HEALTH BOARD  -->
-            <a href="health-board.php">
+            <a href="">
                 <div class="flex flex-col lg:w-[125px] lg:h-[144px] bg-white rounded-3xl mx-auto mt-[61px] justify-center items-center space-y-3 hover:scale-105 transform transition-transform duration-300">
                     <img src="../assets/sidebar/health-board-active.png" alt="health-board-active">
                     <h1 class="text-side-navbar-active-text">Health Board</h1> 
@@ -133,7 +132,7 @@ $userID = $user_data['userID'];
                 <!-- UPPER BOXES  -->
                 <div class="flex flex-col lg:flex-row">
                     <!-- PROFILE SECTION -->
-                    <a href="../dist/user-profile.php">
+                    <a href="./dist/user-profile.php">
                         <div class="w-full h-[179px] lg:w-[483px] lg:h-[274px] mt-[20px] rounded-3xl shadow-custom lg:mr-7 hover:scale-105 transform transition-transform duration-300">
                             
                             <!-- USER NAME AND ICON  -->
@@ -160,62 +159,167 @@ $userID = $user_data['userID'];
                     </a>
 
                     <!-- DIAGNOSIS SECTION -->
-                    <a href="../dist/user-medication.php">
-                        <?php $illness_query = "select * from illness where userID = '$userID'"?>
-                        <?php $illness = mysqli_query($con, $illness_query) or die(mysqli_error($con));?>
-                        
+                    <a href="#">
                         <div class="w-full h-[224px] lg:w-[638px] lg:h-[274px] mt-[20px] rounded-3xl shadow-custom lg:mr-7 overflow-auto hover:scale-105 transform transition-transform duration-300">
                             <div class="w-full h-fit my-2"><h1 class="text-start ml-5 font-medium text-side-navbar lg:text-2xl">Diagnosis</h1></div>
                             <hr>
-                            
+                           
                             <div class="flex flex-row flex-wrap">
-                            <?php while($ill_row = mysqli_fetch_assoc($illness)){?>
                                 <!-- DIAGNOSIS BULLET POINT -->
                                 <div class="flex flex-row w-[50%] h-fit mt-3">
                                     <img src="../assets/Rectangle-green.png" alt="bullet" class="h-20 ml-5 pt-3"> 
                                     <div class="w-full h-fit">
                                         <!-- DATE  -->
                                         <div class="flex flex-row w-full h-fit justify-between pt-[10px]">
-                                            <span class="text-sm ml-5 text-gray-text"><?php echo $ill_row['date'] ?></span>
+                                            <span class="text-sm ml-5 text-gray-text">April 2, 2023</span>
                                         </div>
     
                                         <!-- DIAGNOSIS  -->
                                         <div class="flex flex-row w-full h-fit justify-between">
-                                            <span class="text-3xl ml-5"><?php echo $ill_row['Illness'] ?></span>
+                                            <span class="text-3xl ml-5">FBS(Glucose)</span>
                                         </div>
             
                                         <!-- STATUS -->
                                         <div class="flex flex-row w-full h-fit justify-between">
-                                            <span class="text-sm ml-5 text-gray-text"><?php echo $ill_row['status'] ?></span>
+                                            <span class="text-sm ml-5 text-gray-text">Ongoing Treatment</span>
                                         </div>
                                     </div>
                                 </div>
-                                <?php }?> 
+                                <!-- DIAGNOSIS BULLET POINT -->
+                                <div class="flex flex-row w-[50%] h-fit mt-3">
+                                    <img src="../assets/Rectangle-green.png" alt="bullet" class="h-20 ml-5 pt-3"> 
+                                    <div class="w-full h-fit">
+                                        <!-- DATE  -->
+                                        <div class="flex flex-row w-full h-fit justify-between pt-[10px]">
+                                            <span class="text-sm ml-5 text-gray-text">April 2, 2023</span>
+                                        </div>
+    
+                                        <!-- DIAGNOSIS  -->
+                                        <div class="flex flex-row w-full h-fit justify-between">
+                                            <span class="text-3xl ml-5">FBS(Glucose)</span>
+                                        </div>
+            
+                                        <!-- STATUS -->
+                                        <div class="flex flex-row w-full h-fit justify-between">
+                                            <span class="text-sm ml-5 text-gray-text">Ongoing Treatment</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- DIAGNOSIS BULLET POINT -->
+                                <div class="flex flex-row w-[50%] h-fit mt-3">
+                                    <img src="../assets/Rectangle-green.png" alt="bullet" class="h-20 ml-5 pt-3"> 
+                                    <div class="w-full h-fit">
+                                        <!-- DATE  -->
+                                        <div class="flex flex-row w-full h-fit justify-between pt-[10px]">
+                                            <span class="text-sm ml-5 text-gray-text">April 2, 2023</span>
+                                        </div>
+    
+                                        <!-- DIAGNOSIS  -->
+                                        <div class="flex flex-row w-full h-fit justify-between">
+                                            <span class="text-3xl ml-5">FBS(Glucose)</span>
+                                        </div>
+            
+                                        <!-- STATUS -->
+                                        <div class="flex flex-row w-full h-fit justify-between">
+                                            <span class="text-sm ml-5 text-gray-text">Ongoing Treatment</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- DIAGNOSIS BULLET POINT -->
+                                <div class="flex flex-row w-[50%] h-fit mt-3">
+                                    <img src="../assets/Rectangle-green.png" alt="bullet" class="h-20 ml-5 pt-3"> 
+                                    <div class="w-full h-fit">
+                                        <!-- DATE  -->
+                                        <div class="flex flex-row w-full h-fit justify-between pt-[10px]">
+                                            <span class="text-sm ml-5 text-gray-text">April 2, 2023</span>
+                                        </div>
+    
+                                        <!-- DIAGNOSIS  -->
+                                        <div class="flex flex-row w-full h-fit justify-between">
+                                            <span class="text-3xl ml-5">FBS(Glucose)</span>
+                                        </div>
+            
+                                        <!-- STATUS -->
+                                        <div class="flex flex-row w-full h-fit justify-between">
+                                            <span class="text-sm ml-5 text-gray-text">Ongoing Treatment</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- DIAGNOSIS BULLET POINT -->
+                                <div class="flex flex-row w-[50%] h-fit mt-3">
+                                    <img src="../assets/Rectangle-green.png" alt="bullet" class="h-20 ml-5 pt-3"> 
+                                    <div class="w-full h-fit">
+                                        <!-- DATE  -->
+                                        <div class="flex flex-row w-full h-fit justify-between pt-[10px]">
+                                            <span class="text-sm ml-5 text-gray-text">April 2, 2023</span>
+                                        </div>
+    
+                                        <!-- DIAGNOSIS  -->
+                                        <div class="flex flex-row w-full h-fit justify-between">
+                                            <span class="text-3xl ml-5">FBS(Glucose)</span>
+                                        </div>
+            
+                                        <!-- STATUS -->
+                                        <div class="flex flex-row w-full h-fit justify-between">
+                                            <span class="text-sm ml-5 text-gray-text">Ongoing Treatment</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
                             </div>
+                            
                         </div>
                     </a>
                     
                     <!-- NOTES SECTION -->
                     <div class="w-full h-[112px] lg:w-[451px] lg:h-[274px] mt-[20px] rounded-3xl shadow-custom lg:mr-7 overflow-auto z-30 hover:scale-105 transform transition-transform duration-300">
-                        <?php $note_query = "select * from notes where userID = '$userID'"?>
-                        <?php $note = mysqli_query($con, $note_query) or die(mysqli_error($con));?>
                         <div class="w-full h-fit my-2">
                             <h1 class="text-start ml-5 font-medium text-side-navbar lg:text-2xl">Notes</h1>
                         </div>
                         <hr>
-                        <?php while($note_row = mysqli_fetch_assoc($note)){?>
                         <!-- NOTE BULLET POINT -->
                         <div class="flex flex-row w-full h-fit pb-3">
                             <img src="../assets/bullet-point.png" alt="bullet" class="mt-[35px] ml-5 w-3 h-3"> 
-                            
                             <div class="w-full h-fit">
                                 <!-- NOTE  -->
                                 <div class="flex flex-row w-full h-fit">
-                                    <span class="text-sm mr-5 mt-[26px] pl-5 text-justify"><?php echo $note_row['notes'] ?></span>
+                                    <span class="text-sm mr-5 mt-[26px] pl-5 text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae natus non reiciendis tempora qui quasi fuga minima totam cupiditate laudantium.</span>
                                 </div>
                             </div>
                         </div>
-                        <?php } ?>
+
+                        <!-- NOTE BULLET POINT -->
+                        <div class="flex flex-row w-full h-fit pb-3">
+                            <img src="../assets/bullet-point.png" alt="bullet" class="mt-[35px] ml-5 w-3 h-3"> 
+                            <div class="w-full h-fit">
+                                <!-- NOTE  -->
+                                <div class="flex flex-row w-full h-fit">
+                                    <span class="text-sm mr-5 mt-[26px] pl-5 text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae natus non reiciendis tempora qui quasi fuga minima totam cupiditate laudantium.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- NOTE BULLET POINT -->
+                        <div class="flex flex-row w-full h-fit pb-3">
+                            <img src="../assets/bullet-point.png" alt="bullet" class="mt-[35px] ml-5 w-3 h-3"> 
+                            <div class="w-full h-fit">
+                                <!-- NOTE  -->
+                                <div class="flex flex-row w-full h-fit">
+                                    <span class="text-sm mr-5 mt-[26px] pl-5 text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae natus non reiciendis tempora qui quasi fuga minima totam cupiditate laudantium.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- NOTE BULLET POINT -->
+                        <div class="flex flex-row w-full h-fit pb-3">
+                            <img src="../assets/bullet-point.png" alt="bullet" class="mt-[35px] ml-5 w-3 h-3"> 
+                            <div class="w-full h-fit">
+                                <!-- NOTE  -->
+                                <div class="flex flex-row w-full h-fit">
+                                    <span class="text-sm mr-5 mt-[26px] pl-5 text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae natus non reiciendis tempora qui quasi fuga minima totam cupiditate laudantium.</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
@@ -223,65 +327,249 @@ $userID = $user_data['userID'];
                 <div class="flex flex-col lg:flex-row">
                     <!-- NOTIFICATIONS SECTION -->
                     <div class="w-full h-[282px] lg:w-[483px] lg:h-[515px] mt-[18px] rounded-3xl shadow-custom lg:mr-7 overflow-auto hover:scale-105 transform transition-transform duration-300">
-                        <?php $meds_query = "select * from medication where userID = '$userID'"?>
-                        <?php $meds = mysqli_query($con, $meds_query) or die(mysqli_error($con));?>
                         <div class="w-full h-fit my-2"><h1 class="text-start ml-5 font-medium text-side-navbar lg:text-2xl">Notifications</h1></div>
                         <hr>
-                        <?php while($meds_row = mysqli_fetch_assoc($meds)){?>
                         <!-- MEDICINE BULLET POINT -->
                         <div class="flex flex-row w-full h-[130px]">
                             <img src="../assets/bullet-point.png" alt="bullet" class="mt-[35px] ml-5 w-5 h-5"> 
                             <div class="w-full h-fit">
                                 <!-- MEDICINE  -->
                                 <div class="flex flex-row w-full h-fit justify-between">
-                                    <span class="text-3xl ml-5 mt-[27px]"><?php echo $meds_row['medicine'] ?></span>
-                                    <span class="text-xl mr-5 mt-[32px]"><?php echo $meds_row['dosage'] ?></span>
+                                    <span class="text-3xl ml-5 mt-[27px]">Glumet XR</span>
+                                    <span class="text-xl mr-5 mt-[32px]">500mg</span>
                                 </div>
     
                                 <!-- SCHEDULE  -->
                                 <div class="flex flex-row w-full h-fit justify-between">
-                                    <span class="text-base ml-5 text-gray-text"><?php echo $meds_row['notes'] ?></span>
+                                    <span class="text-base ml-5 text-gray-text">After every breakfast and dinner</span>
                                 </div>
 
                                 <!-- REPITITIONS  -->
                                 <div class="flex flex-row w-full h-fit justify-between">
-                                    <span class="text-base ml-5 text-side-navbar"><?php echo $meds_row['schedule'] ?></span>
+                                    <span class="text-base ml-5 text-side-navbar">Everyday</span>
                                 </div>
                             </div>
                         </div>
                         <hr>
-                        <?php } ?> 
+                        <!-- MEDICINE BULLET POINT -->
+                        <div class="flex flex-row w-full h-[130px]">
+                            <img src="../assets/bullet-point.png" alt="bullet" class="mt-[35px] ml-5 w-5 h-5"> 
+                            <div class="w-full h-fit">
+                                <!-- MEDICINE  -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-3xl ml-5 mt-[27px]">Glumet XR</span>
+                                    <span class="text-xl mr-5 mt-[32px]">500mg</span>
+                                </div>
+    
+                                <!-- SCHEDULE  -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-base ml-5 text-gray-text">After every breakfast and dinner</span>
+                                </div>
+
+                                <!-- REPITITIONS  -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-base ml-5 text-side-navbar">Everyday</span>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <!-- MEDICINE BULLET POINT -->
+                        <div class="flex flex-row w-full h-[130px]">
+                            <img src="../assets/bullet-point.png" alt="bullet" class="mt-[35px] ml-5 w-5 h-5"> 
+                            <div class="w-full h-fit">
+                                <!-- MEDICINE  -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-3xl ml-5 mt-[27px]">Glumet XR</span>
+                                    <span class="text-xl mr-5 mt-[32px]">500mg</span>
+                                </div>
+    
+                                <!-- SCHEDULE  -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-base ml-5 text-gray-text">After every breakfast and dinner</span>
+                                </div>
+
+                                <!-- REPITITIONS  -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-base ml-5 text-side-navbar">Everyday</span>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <!-- MEDICINE BULLET POINT -->
+                        <div class="flex flex-row w-full h-[130px]">
+                            <img src="../assets/bullet-point.png" alt="bullet" class="mt-[35px] ml-5 w-5 h-5"> 
+                            <div class="w-full h-fit">
+                                <!-- MEDICINE  -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-3xl ml-5 mt-[27px]">Glumet XR</span>
+                                    <span class="text-xl mr-5 mt-[32px]">500mg</span>
+                                </div>
+    
+                                <!-- SCHEDULE  -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-base ml-5 text-gray-text">After every breakfast and dinner</span>
+                                </div>
+
+                                <!-- REPITITIONS  -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-base ml-5 text-side-navbar">Everyday</span>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <!-- MEDICINE BULLET POINT -->
+                        <div class="flex flex-row w-full h-[130px]">
+                            <img src="../assets/bullet-point.png" alt="bullet" class="mt-[35px] ml-5 w-5 h-5"> 
+                            <div class="w-full h-fit">
+                                <!-- MEDICINE  -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-3xl ml-5 mt-[27px]">Glumet XR</span>
+                                    <span class="text-xl mr-5 mt-[32px]">500mg</span>
+                                </div>
+    
+                                <!-- SCHEDULE  -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-base ml-5 text-gray-text">After every breakfast and dinner</span>
+                                </div>
+
+                                <!-- REPITITIONS  -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-base ml-5 text-side-navbar">Everyday</span>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <!-- MEDICINE BULLET POINT -->
+                        <div class="flex flex-row w-full h-[130px]">
+                            <img src="../assets/bullet-point.png" alt="bullet" class="mt-[35px] ml-5 w-5 h-5"> 
+                            <div class="w-full h-fit">
+                                <!-- MEDICINE  -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-3xl ml-5 mt-[27px]">Glumet XR</span>
+                                    <span class="text-xl mr-5 mt-[32px]">500mg</span>
+                                </div>
+    
+                                <!-- SCHEDULE  -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-base ml-5 text-gray-text">After every breakfast and dinner</span>
+                                </div>
+
+                                <!-- REPITITIONS  -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-base ml-5 text-side-navbar">Everyday</span>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <!-- MEDICINE BULLET POINT -->
+                        <div class="flex flex-row w-full h-[130px]">
+                            <img src="../assets/bullet-point.png" alt="bullet" class="mt-[35px] ml-5 w-5 h-5"> 
+                            <div class="w-full h-fit">
+                                <!-- MEDICINE  -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-3xl ml-5 mt-[27px]">Glumet XR</span>
+                                    <span class="text-xl mr-5 mt-[32px]">500mg</span>
+                                </div>
+    
+                                <!-- SCHEDULE  -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-base ml-5 text-gray-text">After every breakfast and dinner</span>
+                                </div>
+
+                                <!-- REPITITIONS  -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-base ml-5 text-side-navbar">Everyday</span>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <!-- MEDICINE BULLET POINT -->
+                        <div class="flex flex-row w-full h-[130px]">
+                            <img src="../assets/bullet-point.png" alt="bullet" class="mt-[35px] ml-5 w-5 h-5"> 
+                            <div class="w-full h-fit">
+                                <!-- MEDICINE  -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-3xl ml-5 mt-[27px]">Glumet XR</span>
+                                    <span class="text-xl mr-5 mt-[32px]">500mg</span>
+                                </div>
+    
+                                <!-- SCHEDULE  -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-base ml-5 text-gray-text">After every breakfast and dinner</span>
+                                </div>
+
+                                <!-- REPITITIONS  -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-base ml-5 text-side-navbar">Everyday</span>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <!-- MEDICINE BULLET POINT -->
+                        <div class="flex flex-row w-full h-[130px]">
+                            <img src="../assets/bullet-point.png" alt="bullet" class="mt-[35px] ml-5 w-5 h-5"> 
+                            <div class="w-full h-fit">
+                                <!-- MEDICINE  -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-3xl ml-5 mt-[27px]">Glumet XR</span>
+                                    <span class="text-xl mr-5 mt-[32px]">500mg</span>
+                                </div>
+    
+                                <!-- SCHEDULE  -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-base ml-5 text-gray-text">After every breakfast and dinner</span>
+                                </div>
+
+                                <!-- REPITITIONS  -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-base ml-5 text-side-navbar">Everyday</span>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <!-- MEDICINE BULLET POINT -->
+                        <div class="flex flex-row w-full h-[130px]">
+                            <img src="../assets/bullet-point.png" alt="bullet" class="mt-[35px] ml-5 w-5 h-5"> 
+                            <div class="w-full h-fit">
+                                <!-- MEDICINE  -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-3xl ml-5 mt-[27px]">Glumet XR</span>
+                                    <span class="text-xl mr-5 mt-[32px]">500mg</span>
+                                </div>
+    
+                                <!-- SCHEDULE  -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-base ml-5 text-gray-text">After every breakfast and dinner</span>
+                                </div>
+
+                                <!-- REPITITIONS  -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-base ml-5 text-side-navbar">Everyday</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- APPOINTMENTS SECTION -->
                     <div class="w-full h-[189px] lg:w-[471px] lg:h-[515px] mt-[18px] rounded-3xl shadow-custom lg:mr-7 overflow-auto hover:scale-105 transform transition-transform duration-300">
-                        <?php $apmt_query = "select * from appointment where userID = '$userID'"?>
-                        <?php $apmt = mysqli_query($con, $apmt_query) or die(mysqli_error($con));?>
-                        
                         <div class="w-full h-fit my-2"><h1 class="text-start ml-5 font-medium text-side-navbar lg:text-2xl">Appointments</h1></div>
                         <hr>
-                        
-                        <?php while($apmt_row = mysqli_fetch_assoc($apmt)){?>
-                        <?php $apmt_doc_id = $apmt_row['doctorID'] ?>
-                        <?php $apmt_illness_query = "select * from illness where userID = '$userID' and doctorID = '$apmt_doc_id'"?>
-                        
-                        <?php $apmt__illness = mysqli_query($con, $apmt_illness_query) or die(mysqli_error($con));?>
-                        <?php while($apmt_illness_row = mysqli_fetch_assoc($apmt__illness)){ ?>
-                           
+
                         <!-- APPOINTMENT BULLET POINT  -->
                         <div class="flex flex-col w-full h-fit pb-2">
                             <div class="flex flex-row w-full h-fit">
                                 <img src="../assets/profilesample.jpg" alt="doctor's_profile" class="w-20 h-20 rounded-full ml-5 mt-5">
                                 <!-- DOCTOR'S DETAILS  -->
                                 <div class="flex flex-col w-full h-fit mt-7">
-                                    <span class="text-2xl ml-5"><?php echo $apmt_row['doctorName']?></span>
-                                    <span class="text-sm ml-5 text-gray-text"><?php echo $apmt_row['specialty'] ?></span>
+                                    <span class="text-2xl ml-5">Dr. Cha</span>
+                                    <span class="text-sm ml-5 text-gray-text">Internal Medicine</span>
                                 </div>
                             </div>
+
                             <!-- APPOINTMENT'S DETAILS  -->
                             <div class="flex flex-col w-full h-fit">
                                 <div class="flex flex-row w-full h-fit mt-2 justify-between">
-                                    <span class="text-2xl ml-10"><?php echo $apmt_illness_row['Illness'] ?></span>
+                                    <span class="text-2xl ml-10">Diabetes</span>
                                     <span class="text-sm mr-10 mt-2 text-gray-text">Clinic Consultation</span>
                                 </div> 
                                 
@@ -293,35 +581,97 @@ $userID = $user_data['userID'];
 
                                 <!-- DATE AND TIME VALUES -->
                                 <div class="flex flex-row w-full h-fit justify-between">
-                                    <span class="text-2xl ml-10"><?php echo $apmt_row['date'] ?></span>
-                                    <span class="text-2xl mr-auto ml-28"><?php echo $apmt_row['time'] ?></span>
+                                    <span class="text-2xl ml-10">July 20, 2023</span>
+                                    <span class="text-2xl mr-auto ml-28">1:00 pm</span>
                                 </div>
                             </div>
                         </div>
                         <hr>
-                        <?php }} ?>
+
+                        <!-- APPOINTMENT BULLET POINT  -->
+                        <div class="flex flex-col w-full h-fit pb-2">
+                            <div class="flex flex-row w-full h-fit">
+                                <img src="../assets/profilesample.jpg" alt="doctor's_profile" class="w-20 h-20 rounded-full ml-5 mt-5">
+                                <!-- DOCTOR'S DETAILS  -->
+                                <div class="flex flex-col w-full h-fit mt-7">
+                                    <span class="text-2xl ml-5">Dr. Cha</span>
+                                    <span class="text-sm ml-5 text-gray-text">Internal Medicine</span>
+                                </div>
+                            </div>
+
+                            <!-- APPOINTMENT'S DETAILS  -->
+                            <div class="flex flex-col w-full h-fit">
+                                <div class="flex flex-row w-full h-fit mt-2 justify-between">
+                                    <span class="text-2xl ml-10">Diabetes</span>
+                                    <span class="text-sm mr-10 mt-2 text-gray-text">Clinic Consultation</span>
+                                </div> 
+                                
+                                <!-- DATE AND TIME  -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-sm ml-10 mt-1 text-side-navbar">Date</span>
+                                    <span class="text-sm mr-32 mt-1 text-side-navbar">Time</span>
+                                </div>
+
+                                <!-- DATE AND TIME VALUES -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-2xl ml-10">July 20, 2023</span>
+                                    <span class="text-2xl mr-auto ml-28">1:00 pm</span>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+
+                        <!-- APPOINTMENT BULLET POINT  -->
+                        <div class="flex flex-col w-full h-fit pb-2">
+                            <div class="flex flex-row w-full h-fit">
+                                <img src="../assets/profilesample.jpg" alt="doctor's_profile" class="w-20 h-20 rounded-full ml-5 mt-5">
+                                <!-- DOCTOR'S DETAILS  -->
+                                <div class="flex flex-col w-full h-fit mt-7">
+                                    <span class="text-2xl ml-5">Dr. Cha</span>
+                                    <span class="text-sm ml-5 text-gray-text">Internal Medicine</span>
+                                </div>
+                            </div>
+
+                            <!-- APPOINTMENT'S DETAILS  -->
+                            <div class="flex flex-col w-full h-fit">
+                                <div class="flex flex-row w-full h-fit mt-2 justify-between">
+                                    <span class="text-2xl ml-10">Diabetes</span>
+                                    <span class="text-sm mr-10 mt-2 text-gray-text">Clinic Consultation</span>
+                                </div> 
+                                
+                                <!-- DATE AND TIME  -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-sm ml-10 mt-1 text-side-navbar">Date</span>
+                                    <span class="text-sm mr-32 mt-1 text-side-navbar">Time</span>
+                                </div>
+
+                                <!-- DATE AND TIME VALUES -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-2xl ml-10">July 20, 2023</span>
+                                    <span class="text-2xl mr-auto ml-28">1:00 pm</span>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
                     </div>
                     
                     <!-- LABORATORY RESULTS SECTION -->
                     <div class="w-full h-[182px] lg:w-[620px] lg:h-[515px] mt-[18px] rounded-3xl shadow-custom lg:mr-7 overflow-auto hover:scale-105 transform transition-transform duration-300">
-                        <?php $lab_query = "select * from lab_results where userID = '$userID'"?>
-                        <?php $lab = mysqli_query($con, $lab_query) or die(mysqli_error($con));?>
                         <div class="w-full h-fit my-2"><h1 class="text-start ml-5 font-medium text-side-navbar lg:text-2xl">Laboratory Results</h1></div>
                         <hr>
-                        <?php while($lab_row = mysqli_fetch_assoc($lab)){?>
                         <!-- LAB BULLET POINT -->
                         <div class="flex flex-row w-full h-[130px]">
                             <img src="../assets/Rectangle-green.png" alt="bullet" class="mt-[35px] ml-5"> 
                             <div class="w-full h-fit">
                                 <!-- DATE  -->
                                 <div class="flex flex-row w-full h-fit justify-between pt-[32px]">
-                                    <span class="text-sm ml-5 text-gray-text"><?php echo $lab_row['date'] ?></span>
+                                    <span class="text-sm ml-5 text-gray-text">April 2, 2023</span>
                                 </div>
 
                                 <!-- LAB TEST  -->
                                 <div class="flex flex-row w-full h-fit justify-between">
-                                    <span class="text-3xl ml-5"><?php echo $lab_row['lab_test'] ?></span>
-                                    <span class="text-2xl mr-5 text-side-navbar"><?php echo $lab_row['lab_result'] ?></span>
+                                    <span class="text-3xl ml-5">FBS(Glucose)</span>
+                                    <span class="text-2xl mr-5 text-side-navbar">7.78 mmol/L</span>
                                 </div>
     
                                 <!-- NORMAL RANGE  -->
@@ -331,11 +681,118 @@ $userID = $user_data['userID'];
                                 
                                 <!-- NORMAL RANGE VALUE  -->
                                 <div class="flex flex-row w-full h-fit justify-between">
-                                    <span class="text-sm ml-5 text-gray-text"><?php echo $lab_row['normal_range'] ?></span>
+                                    <span class="text-sm ml-5 text-gray-text">30.9 - 6.4 mmol/L</span>
                                 </div>
                             </div>
                         </div>
-                        <?php } ?> 
+
+                        <!-- LAB BULLET POINT -->
+                        <div class="flex flex-row w-full h-[130px]">
+                            <img src="../assets/Rectangle-yellow.png" alt="bullet" class="mt-[35px] ml-5"> 
+                            <div class="w-full h-fit">
+                                <!-- DATE  -->
+                                <div class="flex flex-row w-full h-fit justify-between pt-[32px]">
+                                    <span class="text-sm ml-5 text-gray-text">April 2, 2023</span>
+                                </div>
+
+                                <!-- LAB TEST  -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-3xl ml-5">FBS(Glucose)</span>
+                                    <span class="text-2xl mr-5 text-side-navbar">7.78 mmol/L</span>
+                                </div>
+    
+                                <!-- NORMAL RANGE  -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-sm ml-5 text-gray-text">Normal Range:</span>
+                                </div>
+                                
+                                <!-- NORMAL RANGE VALUE  -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-sm ml-5 text-gray-text">30.9 - 6.4 mmol/L</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- LAB BULLET POINT -->
+                        <div class="flex flex-row w-full h-[130px]">
+                            <img src="../assets/Rectangle-green.png" alt="bullet" class="mt-[35px] ml-5"> 
+                            <div class="w-full h-fit">
+                                <!-- DATE  -->
+                                <div class="flex flex-row w-full h-fit justify-between pt-[32px]">
+                                    <span class="text-sm ml-5 text-gray-text">April 2, 2023</span>
+                                </div>
+
+                                <!-- LAB TEST  -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-3xl ml-5">FBS(Glucose)</span>
+                                    <span class="text-2xl mr-5 text-side-navbar">7.78 mmol/L</span>
+                                </div>
+    
+                                <!-- NORMAL RANGE  -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-sm ml-5 text-gray-text">Normal Range:</span>
+                                </div>
+                                
+                                <!-- NORMAL RANGE VALUE  -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-sm ml-5 text-gray-text">30.9 - 6.4 mmol/L</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- LAB BULLET POINT -->
+                        <div class="flex flex-row w-full h-[130px]">
+                            <img src="../assets/Rectangle-yellow.png" alt="bullet" class="mt-[35px] ml-5"> 
+                            <div class="w-full h-fit">
+                                <!-- DATE  -->
+                                <div class="flex flex-row w-full h-fit justify-between pt-[32px]">
+                                    <span class="text-sm ml-5 text-gray-text">April 2, 2023</span>
+                                </div>
+
+                                <!-- LAB TEST  -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-3xl ml-5">FBS(Glucose)</span>
+                                    <span class="text-2xl mr-5 text-side-navbar">7.78 mmol/L</span>
+                                </div>
+    
+                                <!-- NORMAL RANGE  -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-sm ml-5 text-gray-text">Normal Range:</span>
+                                </div>
+                                
+                                <!-- NORMAL RANGE VALUE  -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-sm ml-5 text-gray-text">30.9 - 6.4 mmol/L</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- LAB BULLET POINT -->
+                        <div class="flex flex-row w-full h-[130px]">
+                            <img src="../assets/Rectangle-green.png" alt="bullet" class="mt-[35px] ml-5"> 
+                            <div class="w-full h-fit">
+                                <!-- DATE  -->
+                                <div class="flex flex-row w-full h-fit justify-between pt-[32px]">
+                                    <span class="text-sm ml-5 text-gray-text">April 2, 2023</span>
+                                </div>
+
+                                <!-- LAB TEST  -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-3xl ml-5">FBS(Glucose)</span>
+                                    <span class="text-2xl mr-5 text-side-navbar">7.78 mmol/L</span>
+                                </div>
+    
+                                <!-- NORMAL RANGE  -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-sm ml-5 text-gray-text">Normal Range:</span>
+                                </div>
+                                
+                                <!-- NORMAL RANGE VALUE  -->
+                                <div class="flex flex-row w-full h-fit justify-between">
+                                    <span class="text-sm ml-5 text-gray-text">30.9 - 6.4 mmol/L</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

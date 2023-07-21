@@ -28,7 +28,6 @@ function toggleActiveClassTime() {
 
   var doctorID = document.getElementById("doctor-id");
   var doctorSel = document.getElementById("doctorBox");
-  
   listItemsTime.forEach(function(time) {
     time.addEventListener('click', function() {
       // Toggle the active class for the clicked item
